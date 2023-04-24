@@ -1,9 +1,8 @@
 ﻿namespace EventsCatalogAPI.Domain
 {
-    public class EventBrand
+    public class EventCategory
     {
         public int Id { get; set; }
-        public string Brand { get;set }
-
+        public string Category { get; set; }
     }
 }
