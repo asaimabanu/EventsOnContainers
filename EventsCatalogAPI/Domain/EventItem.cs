@@ -6,7 +6,7 @@ namespace EventsCatalogAPI.Domain
     {
         public int Id { get; set; }
         
-        public string Name { get; set; }
+        public string Title { get; set; }
         
         public string Description { get; set; }
         
@@ -14,17 +14,17 @@ namespace EventsCatalogAPI.Domain
         
         public string PictureUrl {get ; set;}
 
-        public string Duration { get; set; }
+      //  public string Duration { get; set; }
         
-        public DateTime EventDate { get; set; }
+        public DateTime EventStartDateTime { get; set; }
+
+        public DateTime EventEndDateTIme { get; set; }  
         
-        public EventLocation Location { get; set; }
+      //  public EventLocation Location { get; set; }
         
-        public int EventTypeId { get; set;}
+      //  public bool  EventType { get; set;}
         
         public int EventCategoryId { get; set; }
-
-        public virtual EventType EventType { get; set; }
         
         public virtual EventCategory EventCategory { get; set; }
         //create a blank solution 

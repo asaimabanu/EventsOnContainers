@@ -3,15 +3,20 @@
     public class EventLocation
     {
 
-        public string AddressLine1 { get; set; }
+        public string? AddressLine1 { get; set; }
 
-        public string AddressLine2{ get; set; }
+        public string? AddressLine2{ get; set; }
 
-        public string City { get; set; }
+        public string? City { get; set; }
 
-        public string State { get; set; }
+        public string? State { get; set; }
 
-        public string ZipCode { get; set; }
+        public string? ZipCode { get; set; }
+
+        public EventLocation()
+        {
+
+        }
 
         public EventLocation(string addressline1,string addressline2,string city,string state,string zipcode)
         {
