@@ -5,7 +5,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace EventsCatalogAPI.Migrations
 {
-    public partial class Initial : Migration
+    public partial class InitialCreate : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -32,10 +32,9 @@ namespace EventsCatalogAPI.Migrations
                     Description = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Price = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
                     PictureUrl = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    Duration = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     EventStartDateTime = table.Column<DateTime>(type: "datetime2", nullable: false),
                     EventEndDateTIme = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    EventType = table.Column<bool>(type: "bit", nullable: false),
+                    IsOnline = table.Column<bool>(type: "bit", nullable: false),
                     EventCategoryId = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
@@ -49,14 +48,47 @@ namespace EventsCatalogAPI.Migrations
                         onDelete: ReferentialAction.Cascade);
                 });
 
+            migrationBuilder.CreateTable(
+                name: "EventLocations",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    EventID = table.Column<int>(type: "int", nullable: false),
+                    AddressLine1 = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    AddressLine2 = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    City = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    State = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    ZipCode = table.Column<string>(type: "nvarchar(max)", nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_EventLocations", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_EventLocations_EventItems_EventID",
+                        column: x => x.EventID,
+                        principalTable: "EventItems",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
             migrationBuilder.CreateIndex(
                 name: "IX_EventItems_EventCategoryId",
                 table: "EventItems",
                 column: "EventCategoryId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_EventLocations_EventID",
+                table: "EventLocations",
+                column: "EventID",
+                unique: true);
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
         {
+            migrationBuilder.DropTable(
+                name: "EventLocations");
+
             migrationBuilder.DropTable(
                 name: "EventItems");
 

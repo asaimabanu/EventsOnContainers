@@ -1,4 +1,4 @@
-﻿using Microsoft.EntityFrameworkCore.Query;
+﻿//using Microsoft.EntityFrameworkCore.Query;
 
 namespace EventsCatalogAPI.Domain
 {
@@ -18,11 +18,13 @@ namespace EventsCatalogAPI.Domain
         
         public DateTime EventStartDateTime { get; set; }
 
-        public DateTime EventEndDateTIme { get; set; }  
+        public DateTime EventEndDateTIme { get; set; }
+
+        //public int EventLocationId { get; set; }
         
-      //  public EventLocation Location { get; set; }
+        public virtual EventLocation EventLocation { get; set; }
         
-      //  public bool  EventType { get; set;}
+        public bool  IsOnline { get; set;}
         
         public int EventCategoryId { get; set; }
         

@@ -8,7 +8,7 @@ namespace EventsCatalogAPI.Data
         public static void Seed(EventContext context)
         {
             context.Database.Migrate();
-            context.Database.Migrate();
+            //context.Database.Migrate();
             if (!context.EventCategories.Any())
             {
                 context.EventCategories.AddRange(GetEventCategories());
@@ -27,9 +27,11 @@ namespace EventsCatalogAPI.Data
         {
             return new List<EventCategory>
           {
-              new EventCategory{Category="Auto,Boat Air"},
-              new EventCategory{Category="Business Professional"},
-              new EventCategory{Category="Charity Causes"}
+              new EventCategory{Category="Music"},
+              new EventCategory{Category="Performing & Visual Arts events"},
+              new EventCategory{Category="Holiday"},
+              new EventCategory{Category = "Health"},
+              new EventCategory{Category = "Other"}
           };
         }
 
@@ -37,30 +39,100 @@ namespace EventsCatalogAPI.Data
         {
             return new List<EventItem>
           {
-              new EventItem{EventCategoryId = 3, 
-                            Title = "Seattle Mom Prom",
-                            Description = "An evening of drinks, desserts, dancing and FUN -- the ultimate ladies night out! All benefiting Perinatal Support Washington!", 
-                            Price = 99.5M, 
-                            PictureUrl = "https://img.evbuc.com/https%3A%2F%2Fcdn.evbuc.com%2Fimages%2F430701329%2F1361799702583%2F1%2Foriginal.20230124-002154?w=940&auto=format%2Ccompress&q=75&sharp=10&rect=0%2C71%2C1124%2C562&s=6d7a248de52f8fb8f551ea4278e8b394",
-                            EventStartDateTime = new DateTime(2023,5,8,18,0,0),
-                            EventEndDateTIme = new DateTime(2023,5,8,21,0,0)},
+              new EventItem{EventCategoryId = 1, 
+                            Title = "Ancient drumming workshop with Heilung’s Jacob Lund",
+                            Description = "Explore the ancient art of drumming with Denmark’s Jacob Lund, of the band Heilung", 
+                            Price = 130, 
+                            PictureUrl = "https://sampledomain/api/pic/1",
+                            EventStartDateTime = new DateTime(2023,5,26,17,0,0),
+                            EventEndDateTIme = new DateTime(2023,5,26,20,0,0),
+                            EventLocation = new EventLocation
+                            {
+                                AddressLine1= "Teatro de la Psychomachia ",
+                                AddressLine2 ="1534 1st Avenue",
+                                City = "Seattle",
+                                State = "WA",
+                                ZipCode = "98134"
+                            }
+              },
 
 
               new EventItem{EventCategoryId = 2,
-                            Title = "Tech Career Fair",
-                            Description = "Seattle Tech Career Fair: Exclusive Tech Hiring Event",
-                            Price = 0.0M,
-                            PictureUrl = "https://img.evbuc.com/https%3A%2F%2Fcdn.evbuc.com%2Fimages%2F129223019%2F197361445633%2F1%2Foriginal.20210316-120602?w=512&auto=format%2Ccompress&q=75&sharp=10&rect=173%2C0%2C2160%2C1080&s=20df210f60f3d4b78b4cb633133fa590",
-                            EventStartDateTime = new DateTime(2023,5,23,9,0,0),
-                            EventEndDateTIme = new DateTime(2023,5,23,18,0,0)},
+                            Title = "Venice is Sinking Masquerade Ball 2023",
+                            Description = "Venice is Sinking Masquerade Ball ~ NEW VENUE!",
+                            Price = 15,
+                            PictureUrl = "https://sampledomain/api/pic/2",
+                            EventStartDateTime = new DateTime(2023,5,20,9,0,0),
+                            EventEndDateTIme = new DateTime(2023,5,21,1,0,0),
+                            EventLocation = new EventLocation
+                            {
+                                AddressLine1= "House of Smith Jet City Winery 1136 South",
+                                AddressLine2 ="Albro Place",
+                                City = "Seattle",
+                                State = "WA",
+                                ZipCode = "98108"
+                            }
+              },
 
-              new EventItem{EventCategoryId = 1,
-                            Title = "MCS Night at the Races",
-                            Description = "Join fellow MCS Families for a special night at the races. This TAPP event helps raise funds to support our students and teachers.",
-                            Price = 20.0M,
-                            PictureUrl = "https://img.evbuc.com/https%3A%2F%2Fcdn.evbuc.com%2Fimages%2F496857949%2F173096092901%2F1%2Foriginal.20230420-030912?w=940&auto=format%2Ccompress&q=75&sharp=10&rect=0%2C52%2C1640%2C820&s=6a52f9a1238aa65bf5f963f95c042239",
-                            EventStartDateTime = new DateTime(2023,6,12,18,0,0),
-                            EventEndDateTIme = new DateTime(2023,6,12,21,0,0)},
+              new EventItem{EventCategoryId = 2,
+                            Title = "Family Magic Show at the Seattle Center",
+                            Description = "Family Friendly Magic Show at the Seattle Center. Free Admission. Artful theatrical magic to amaze and entertain kids and adults.",
+                            Price = 0,
+                            PictureUrl = "https://sampledomain/api/pic/3",
+                            EventStartDateTime = new DateTime(2023,4,29,13,0,0),
+                            EventEndDateTIme = new DateTime(2023,4,29,13,45,0),
+                            EventLocation = new EventLocation
+                            {
+                                AddressLine1= "Theater Puget Sound 305 Harrison Street",
+                                AddressLine2 ="",
+                                City = "Seattle",
+                                State = "WA",
+                                ZipCode = "98109"
+                            }
+
+              },
+               new EventItem{EventCategoryId = 3,
+                            Title = "Empress Yacht July 4th Fireworks Party Cruise",
+                            Description = "A July 4th party cruise aboard the Empress yacht with a panoramic view of the San Francisco skyline under the stars and city lights",
+                            Price = 169,
+                            PictureUrl = "https://sampledomain/api/pic/4",
+                            EventStartDateTime = new DateTime(2023,7,4,19,30,0),
+                            EventEndDateTIme = new DateTime(2023,7,4,11,45,0),
+                            EventLocation = new EventLocation
+                            {
+                                AddressLine1= "Pier 40 89 King Street ",
+                                //AddressLine2 ="",
+                                City = "San Francisco",
+                                State = "CA",
+                                ZipCode = "94107"
+                            }
+              },
+                new EventItem{EventCategoryId = 4,
+                            Title = "SOUND BATH IN REDWOOD GROVE - GOLDEN GATE PARK",
+                            Description = "The Logos Method ~ SOUND BATH ~ APRIL 29, 2022",
+                            Price = 40,
+                            PictureUrl = "https://sampledomain/api/pic/5",
+                            EventStartDateTime = new DateTime(2023,4,29,15,0,0),
+                            EventEndDateTIme = new DateTime(2023,4,29,16,30,0),
+                            EventLocation = new EventLocation
+                            {
+                                AddressLine1= "National AIDS Memorial Grove Bowling",
+                                AddressLine2 ="Green Drive",
+                                City = "San Francisco",
+                                State = "CA",
+                                ZipCode = "94122"
+                            }
+              },
+               new EventItem{EventCategoryId = 5,
+                            Title = "Come Meet A Black Person\" Anti-Racism Virtual Series",
+                            Description = "\"Come Meet A Black Person\" anti-racism virtual event where non-Blacks talk about racism and eradicating racism with Blacks .",
+                            Price = 200,
+                            PictureUrl = "https://sampledomain/api/pic/6",
+                            EventStartDateTime = new DateTime(2023,5,14,12,0,0),
+                            EventEndDateTIme = new DateTime(2023,5,14,14,0,0),
+                            IsOnline= true,
+                          
+              }
           };
         }
     }

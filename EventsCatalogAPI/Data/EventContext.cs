@@ -9,6 +9,8 @@ namespace EventsCatalogAPI.Data
         { }
         public DbSet<EventCategory> EventCategories { get; set; }
         public DbSet<EventItem> EventItems { get; set; }
+
+        public DbSet<EventLocation> EventLocations { get; set; }
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.Entity<EventCategory>(e =>
@@ -45,7 +47,12 @@ namespace EventsCatalogAPI.Data
                 e.HasOne(t => t.EventCategory)
                 .WithMany()
                 .HasForeignKey(t => t.EventCategoryId);
+
+                e.HasOne(t => t.EventLocation)
+                .WithOne(l => l.EventItem)
+                .HasForeignKey<EventLocation>(t => t.EventID);
             });
+
         }
     }
 }
