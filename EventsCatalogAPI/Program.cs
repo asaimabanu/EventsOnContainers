@@ -11,7 +11,7 @@ builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 builder.Services.AddDbContext<EventContext>(
-    options => options.UseSqlServer(configuration["ConnectionStrings:EventAPI"])
+    options => options.UseSqlServer(configuration["ConnectionString"])
     );
 
 
