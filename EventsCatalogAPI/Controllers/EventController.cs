@@ -3,6 +3,9 @@ using EventsCatalogAPI.Domain;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using EventsCatalogAPI.Model;
+using System.Text.Json;
+using System.Text.Json.Serialization;
+using Microsoft.Extensions.Options;
 
 namespace EventsCatalogAPI.Controllers
 {
@@ -38,18 +41,23 @@ namespace EventsCatalogAPI.Controllers
             [FromQuery] int? EventId,
             [FromQuery] int? EventCategoryId,
             [FromQuery] bool? IsOnline,
+            [FromQuery] string? City,
             [FromQuery] int PageIndex=0,
             [FromQuery] int PageSize=3)
         {
-            var query = (IQueryable<EventItem>) _eventContext.EventItems;
+            var query = (IQueryable<EventItem>)_eventContext.EventItems.Include(e => e.EventLocation);
 
-            if(EventCategoryId.HasValue)
+            if (EventCategoryId.HasValue)
             {
                 query = query.Where(q => q.EventCategoryId == EventCategoryId);
             }
             if(EventId.HasValue)
             {
                 query = query.Where(q => q.EventCategoryId == EventId);
+            }
+            if (!string.IsNullOrEmpty(City))
+            {
+                query = query.Where(q => q.EventLocation.City == City);
             }
             if(IsOnline.HasValue)
             {
@@ -58,6 +66,8 @@ namespace EventsCatalogAPI.Controllers
                     query = query.Where(q => q.IsOnline == IsOnline);
                 }
             }
+        
+
 
             var local_items_count = await query.LongCountAsync();
             var local_items = await query
@@ -76,7 +86,12 @@ namespace EventsCatalogAPI.Controllers
                 Count = local_items_count
             };
 
-            return Ok(model);
+            var options = new JsonSerializerOptions()
+            {
+                ReferenceHandler = ReferenceHandler.Preserve
+            };
+
+            return Ok(JsonSerializer.Serialize(model, options));
 
         }
 
