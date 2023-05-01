@@ -6,6 +6,7 @@ using EventsCatalogAPI.Model;
 using System.Text.Json;
 using System.Text.Json.Serialization;
 using Microsoft.Extensions.Options;
+using static Microsoft.EntityFrameworkCore.DbLoggerCategory;
 
 namespace EventsCatalogAPI.Controllers
 {
@@ -23,10 +24,25 @@ namespace EventsCatalogAPI.Controllers
         }
 
         [HttpGet("[action]")]
-        public async Task<IActionResult> EventItems()
+        public async Task<IActionResult> EventItems([FromQuery] int PageIndex = 0,
+            [FromQuery] int PageSize = 3)
         {
-            var list = await _eventContext.EventItems.ToListAsync();
-            return Ok(list);
+
+            var local_items_count = await _eventContext.EventItems.LongCountAsync();
+            var local_items = await _eventContext.EventItems
+               .OrderBy(q => q.EventCategoryId)
+               .Skip(PageIndex * PageSize)
+               .Take(PageSize)
+               .ToListAsync();
+            var model = new PaginatedViewModel()
+            {
+                PageIndex = PageIndex,
+                PageSize = local_items.Count,
+                Data = local_items,
+                Count = local_items_count
+            };
+
+            return Ok(model);
         }
 
         [HttpGet("[action]")]
