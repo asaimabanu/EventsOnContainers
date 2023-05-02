@@ -20,7 +20,7 @@ namespace EventsCatalogAPI.Domain
 
         public DateTime EventEndDateTIme { get; set; }
 
-        //public int EventLocationId { get; set; }
+        //public int? EventLocationId { get; set; }
         
         public virtual EventLocation EventLocation { get; set; }
         

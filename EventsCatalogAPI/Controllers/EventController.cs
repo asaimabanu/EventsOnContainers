@@ -102,12 +102,7 @@ namespace EventsCatalogAPI.Controllers
                 Count = local_items_count
             };
 
-            var options = new JsonSerializerOptions()
-            {
-                ReferenceHandler = ReferenceHandler.Preserve
-            };
-
-            return Ok(JsonSerializer.Serialize(model, options));
+            return Ok(model);
 
         }
 
