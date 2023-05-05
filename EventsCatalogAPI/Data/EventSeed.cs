@@ -43,10 +43,10 @@ namespace EventsCatalogAPI.Data
         {
             return new List<EventItem>
           {
-              new EventItem{EventCategoryId = 1, 
+              new EventItem{EventCategoryId = 1,
                             Title = "Ancient drumming workshop with Heilung’s Jacob Lund",
-                            Description = "Explore the ancient art of drumming with Denmark’s Jacob Lund, of the band Heilung", 
-                            Price = 130, 
+                            Description = "Explore the ancient art of drumming with Denmark’s Jacob Lund, of the band Heilung",
+                            Price = 130,
                             PictureUrl = "https://sampledomain/api/pic/1",
                             EventStartDateTime = new DateTime(2023,5,26,17,0,0),
                             EventEndDateTIme = new DateTime(2023,5,26,20,0,0),
@@ -105,7 +105,7 @@ namespace EventsCatalogAPI.Data
                             EventLocation = new EventLocation
                             {
                                 AddressLine1= "Pier 40 89 King Street ",
-                                //AddressLine2 ="",
+                                AddressLine2 ="",
                                 City = "San Francisco",
                                 State = "CA",
                                 ZipCode = "94107"
@@ -135,7 +135,7 @@ namespace EventsCatalogAPI.Data
                             EventStartDateTime = new DateTime(2023,5,14,12,0,0),
                             EventEndDateTIme = new DateTime(2023,5,14,14,0,0),
                             IsOnline= true,
-                          
+
               },
                new EventItem{EventCategoryId = 6,
                              Title = "Network After Work: Denver at The Infinite Monkey Theorem",
@@ -192,7 +192,7 @@ namespace EventsCatalogAPI.Data
                              PictureUrl = "https://sampledomain/api/pic/9",
                              EventStartDateTime = new DateTime(2023,5,8,19,0,0),
                              EventEndDateTIme = new DateTime(2023,5,8,21,0,0),
-                             EventLocation = new EventLocation 
+                             EventLocation = new EventLocation
                              {
                                 AddressLine1 = "Mykonos Blue Rooftop",
                                 AddressLine2 = "127 W 28th Street",
@@ -293,7 +293,7 @@ namespace EventsCatalogAPI.Data
                              Price = 6,
                              PictureUrl = "https://sampledomain/api/pic/18",
                              EventStartDateTime = new DateTime(2023,5,27,21,0,0),
-                             EventLocation = new EventLocation 
+                             EventLocation = new EventLocation
                              {
                                 AddressLine1 = "Denver Sweet",
                                 AddressLine2 = "776 Lincoln Street",
@@ -301,7 +301,7 @@ namespace EventsCatalogAPI.Data
                                 State = "CO",
                                 ZipCode = "80203"
                              }
-                             
+
                },
                new EventItem{EventCategoryId = 7,
                              Title = "Paint, Plant & Sip",
@@ -310,7 +310,7 @@ namespace EventsCatalogAPI.Data
                              PictureUrl = "https://sampledomain/api/pic/19",
                              EventStartDateTime = new DateTime(2023,5,12,18,3,30,0),
                              EventEndDateTIme = new DateTime(2023,5,12,20,0,0),
-                             EventLocation= new EventLocation 
+                             EventLocation= new EventLocation
                              {
                                 AddressLine1 = "1600 Boulder Street",
                                 City = "Denver",
@@ -325,7 +325,7 @@ namespace EventsCatalogAPI.Data
                              PictureUrl = "https://sampledomain/api/pic/20",
                              EventStartDateTime = new DateTime(2023,5,27,17,0,0),
                              EventEndDateTIme = new DateTime(2023,5,27,19,0,0),
-                             EventLocation = new EventLocation 
+                             EventLocation = new EventLocation
                              {
                                 AddressLine1 = "The Hornet",
                                 AddressLine2 = "76 Broadway",
@@ -341,7 +341,7 @@ namespace EventsCatalogAPI.Data
                              PictureUrl = "https://sampledomain/api/pic/21",
                              EventStartDateTime = new DateTime(2023,5,13,14,0,0),
                              EventEndDateTIme = new DateTime(2023,5,13,18,0,0),
-                             EventLocation = new EventLocation 
+                             EventLocation = new EventLocation
                              {
                                 AddressLine1 = "Microsoft Experience Center (3rd and 5th Floors)",
                                 AddressLine2 = "677 5th Avenue",
@@ -372,7 +372,7 @@ namespace EventsCatalogAPI.Data
                              PictureUrl = "https://sampledomain/api/pic/23",
                              EventStartDateTime = new DateTime(2023,5,10,18,0,0),
                              EventEndDateTIme = new DateTime(2023,5,10,20,0,0),
-                             EventLocation = new EventLocation 
+                             EventLocation = new EventLocation
                              {
                                 AddressLine1 = "Hamilton Fish Recreation Center",
                                 AddressLine2 = "128 Pitt Street",
@@ -587,7 +587,7 @@ namespace EventsCatalogAPI.Data
                              Price = 15,
                              PictureUrl = "https://sampledomain/api/pic/42",
                              EventStartDateTime = new DateTime(2023,5,13,17,0,0),
-                             EventEndDateTIme = new DateTime(2023,5,13,22,30,0), 
+                             EventEndDateTIme = new DateTime(2023,5,13,22,30,0),
                              EventLocation = new EventLocation
                              {
                                 AddressLine1 = "Rollerdome: Home of Denver Roller Derby and Rocky Mountain Rollergirls",

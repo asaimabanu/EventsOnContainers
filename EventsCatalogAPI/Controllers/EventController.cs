@@ -1,12 +1,10 @@
 ﻿using EventsCatalogAPI.Data;
 using EventsCatalogAPI.Domain;
+using EventsCatalogAPI.Model;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
-using EventsCatalogAPI.Model;
 using System.Text.Json;
 using System.Text.Json.Serialization;
-using Microsoft.Extensions.Options;
-using static Microsoft.EntityFrameworkCore.DbLoggerCategory;
 
 namespace EventsCatalogAPI.Controllers
 {
@@ -28,12 +26,17 @@ namespace EventsCatalogAPI.Controllers
             [FromQuery] int PageSize = 3)
         {
 
-            var local_items_count = await _eventContext.EventItems.LongCountAsync();
-            var local_items = await _eventContext.EventItems
-               .OrderBy(q => q.EventCategoryId)
-               .Skip(PageIndex * PageSize)
-               .Take(PageSize)
-               .ToListAsync();
+            var query = (IQueryable<EventItem>)_eventContext.EventItems.Include(e => e.EventLocation);
+            var local_items_count = await query.LongCountAsync();
+            var local_items = await query
+                .OrderBy(q => q.EventCategoryId)
+                .Skip(PageIndex * PageSize)
+                .Take(PageSize)
+                .ToListAsync();
+
+            local_items = ChangePictureUrl(local_items);
+            local_items = GetEventCategory(local_items);
+
             var model = new PaginatedViewModel()
             {
                 PageIndex = PageIndex,
@@ -42,7 +45,15 @@ namespace EventsCatalogAPI.Controllers
                 Count = local_items_count
             };
 
-            return Ok(model);
+            JsonSerializerOptions options = new()
+            {
+                ReferenceHandler = ReferenceHandler.Preserve,
+                WriteIndented = true
+            };
+
+            var json = System.Text.Json.JsonSerializer.Serialize(model, options);
+
+            return Ok(json);
         }
 
         [HttpGet("[action]")]
@@ -58,32 +69,31 @@ namespace EventsCatalogAPI.Controllers
             [FromQuery] int? EventCategoryId,
             [FromQuery] bool? IsOnline,
             [FromQuery] string? City,
-            [FromQuery] int PageIndex=0,
-            [FromQuery] int PageSize=3)
+            [FromQuery] int PageIndex = 0,
+            [FromQuery] int PageSize = 3)
         {
             var query = (IQueryable<EventItem>)_eventContext.EventItems.Include(e => e.EventLocation);
+
 
             if (EventCategoryId.HasValue)
             {
                 query = query.Where(q => q.EventCategoryId == EventCategoryId);
             }
-            if(EventId.HasValue)
+            if (EventId.HasValue)
             {
-                query = query.Where(q => q.EventCategoryId == EventId);
+                query = query.Where(q => q.Id == EventId);
             }
             if (!string.IsNullOrEmpty(City))
             {
                 query = query.Where(q => q.EventLocation.City == City);
             }
-            if(IsOnline.HasValue)
+            if (IsOnline.HasValue)
             {
-                if((bool)IsOnline)
+                if ((bool)IsOnline)
                 {
                     query = query.Where(q => q.IsOnline == IsOnline);
                 }
             }
-        
-
 
             var local_items_count = await query.LongCountAsync();
             var local_items = await query
@@ -93,6 +103,7 @@ namespace EventsCatalogAPI.Controllers
                 .ToListAsync();
 
             local_items = ChangePictureUrl(local_items);
+            local_items = GetEventCategory(local_items);
 
             var model = new PaginatedViewModel()
             {
@@ -102,7 +113,15 @@ namespace EventsCatalogAPI.Controllers
                 Count = local_items_count
             };
 
-            return Ok(model);
+            JsonSerializerOptions options = new()
+            {
+                ReferenceHandler = ReferenceHandler.Preserve,
+                WriteIndented = true
+            };
+
+            var json = System.Text.Json.JsonSerializer.Serialize(model, options);
+
+            return Ok(json);
 
         }
 
@@ -111,6 +130,18 @@ namespace EventsCatalogAPI.Controllers
             items.ForEach(item => item.PictureUrl = item.PictureUrl
             .Replace("https://sampledomain",
             _configuration["SampleDomainReplace"]));
+            return items;
+        }
+
+        private List<EventItem> GetEventCategory(List<EventItem> items)
+        {
+            if (items != null)
+            {
+                items.ForEach(item =>
+                {
+                    item.EventCategory = _eventContext.EventCategories.Where(c => c.Id == item.EventCategoryId).FirstOrDefault();
+                });
+            }
             return items;
         }
     }

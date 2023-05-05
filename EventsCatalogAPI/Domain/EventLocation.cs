@@ -15,7 +15,7 @@
 
         public string? ZipCode { get; set; }
 
-        public virtual EventItem  EventItem {get; set;}
+        public virtual EventItem EventItem { get; set; }
 
     }
 }

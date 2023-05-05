@@ -4,6 +4,7 @@ using EventsCatalogAPI.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace EventsCatalogAPI.Migrations
 {
     [DbContext(typeof(EventContext))]
-    partial class EventContextModelSnapshot : ModelSnapshot
+    [Migration("20230505024416_AddedColumnToEventItem")]
+    partial class AddedColumnToEventItem
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -54,6 +57,10 @@ namespace EventsCatalogAPI.Migrations
 
                     b.Property<int>("EventCategoryId")
                         .HasColumnType("int");
+
+                    b.Property<string>("EventCategoryName")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<DateTime>("EventEndDateTIme")
                         .HasColumnType("datetime2");

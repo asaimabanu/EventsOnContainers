@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace EventsCatalogAPI.Data
 {
-    public class EventContext: DbContext
+    public class EventContext : DbContext
     {
         public EventContext(DbContextOptions options) : base(options)
         { }
@@ -41,7 +41,7 @@ namespace EventsCatalogAPI.Data
                 e.Property(t => t.EventStartDateTime)
                 .IsRequired();
 
-                e.Property(t => t.EventEndDateTIme) 
+                e.Property(t => t.EventEndDateTIme)
                 .IsRequired();
 
                 e.HasOne(t => t.EventCategory)
