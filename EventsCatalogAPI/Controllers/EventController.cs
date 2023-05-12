@@ -3,6 +3,8 @@ using EventsCatalogAPI.Domain;
 using EventsCatalogAPI.Model;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using Newtonsoft.Json;
+using System.Diagnostics;
 using System.Text.Json;
 using System.Text.Json.Serialization;
 
@@ -52,8 +54,12 @@ namespace EventsCatalogAPI.Controllers
             };
 
             var json = System.Text.Json.JsonSerializer.Serialize(model, options);
+            var djson = System.Text.Json.JsonSerializer.Deserialize<PaginatedViewModel>(json, options);
 
-            return Ok(json);
+            //Multiple ways to return data
+            //return(json);
+            //return(model);
+            return Ok(djson);
         }
 
         [HttpGet("[action]")]
@@ -85,7 +91,9 @@ namespace EventsCatalogAPI.Controllers
             }
             if (!string.IsNullOrEmpty(City))
             {
+#pragma warning disable CS8602 // Dereference of a possibly null reference.
                 query = query.Where(q => q.EventLocation.City == City);
+#pragma warning restore CS8602 // Dereference of a possibly null reference.
             }
             if (IsOnline.HasValue)
             {
@@ -105,23 +113,15 @@ namespace EventsCatalogAPI.Controllers
             local_items = ChangePictureUrl(local_items);
             local_items = GetEventCategory(local_items);
 
+
             var model = new PaginatedViewModel()
-            {
+                {
                 PageIndex = PageIndex,
                 PageSize = local_items.Count,
                 Data = local_items,
                 Count = local_items_count
-            };
-
-            JsonSerializerOptions options = new()
-            {
-                ReferenceHandler = ReferenceHandler.Preserve,
-                WriteIndented = true
-            };
-
-            var json = System.Text.Json.JsonSerializer.Serialize(model, options);
-
-            return Ok(json);
+                };
+            return Ok(model);
 
         }
 
@@ -139,10 +139,14 @@ namespace EventsCatalogAPI.Controllers
             {
                 items.ForEach(item =>
                 {
+#pragma warning disable CS8601 // Possible null reference assignment.
                     item.EventCategory = _eventContext.EventCategories.Where(c => c.Id == item.EventCategoryId).FirstOrDefault();
+#pragma warning restore CS8601 // Possible null reference assignment.
                 });
             }
+#pragma warning disable CS8603 // Possible null reference return.
             return items;
+#pragma warning restore CS8603 // Possible null reference return.
         }
     }
 }

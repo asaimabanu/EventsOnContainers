@@ -1,4 +1,9 @@
 ﻿using EventsCatalogAPI.Domain;
+using Microsoft.EntityFrameworkCore.Metadata.Conventions;
+using Newtonsoft.Json;
+using System.Collections;
+using System.Collections.Generic;
+using System.Collections.Immutable;
 
 namespace EventsCatalogAPI.Model
 {
@@ -9,4 +14,5 @@ namespace EventsCatalogAPI.Model
         public IEnumerable<EventItem>? Data { get; set; }
         public long Count { get; set; }
     }
+
 }
