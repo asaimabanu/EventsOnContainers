@@ -8,14 +8,14 @@ EXPOSE 443
 FROM mcr.microsoft.com/dotnet/sdk:6.0 AS build
 WORKDIR /src
 COPY . .
-RUN dotnet restore "EventsCatalogAPI.csproj"
+RUN dotnet restore "WebMvc.csproj"
 
-RUN dotnet build "EventsCatalogAPI.csproj" -c Release -o /app/build
+RUN dotnet build "WebMvc.csproj" -c Release -o /app/build
 
 FROM build AS publish
-RUN dotnet publish "EventsCatalogAPI.csproj" -c Release -o /app/publish
+RUN dotnet publish "WebMvc.csproj" -c Release -o /app/publish
 
 FROM base AS final
 WORKDIR /app
 COPY --from=publish /app/publish .
-ENTRYPOINT ["dotnet", "EventsCatalogAPI.dll"]
+ENTRYPOINT ["dotnet", "WebMvc.dll"]
