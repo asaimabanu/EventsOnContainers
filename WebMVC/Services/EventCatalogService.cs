@@ -3,10 +3,10 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using System.Net.Http;
-using WebMVC.Infrastructure;
-using WebMVC.Models;
+using WebMvc.Infrastructure;
+using WebMvc.Models;
 
-namespace WebMVC.Services
+namespace WebMvc.Services
 
 {
     public class EventCatalogService:IEventCatalogService

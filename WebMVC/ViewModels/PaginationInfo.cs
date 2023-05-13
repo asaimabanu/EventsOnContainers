@@ -1,4 +1,4 @@
-﻿namespace WebMVC.ViewModels
+﻿namespace WebMvc.ViewModels
 {
     public class PaginationInfo
     {

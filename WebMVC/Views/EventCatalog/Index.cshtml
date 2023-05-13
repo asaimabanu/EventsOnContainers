@@ -50,7 +50,7 @@
     <div class="container">
         <form asp-action="Index" asp-controller="EventCatalog" method="post">
             <label class="esh-catalog-label" data-title="brand">
-                <select asp-for="@Model.CategoryFilterApplied" asp-items="@Model.EventCategory" class="esh-catalog-filter"></select>
+                <select asp-for="@Model.CategoryFilterApplied" asp-items="@Model.Category" class="esh-catalog-filter"></select>
             </label>
             <input class="esh-catalog-send" type="image" src="~/images/arrow-right.svg" />
         </form>

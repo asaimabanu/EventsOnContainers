@@ -1,7 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc.Rendering;
-using WebMVC.Models;
+using WebMvc.Models;
 
-namespace WebMVC.ViewModels
+namespace WebMvc.ViewModels
 {
     public class EventCatalogIndexViewModel
     {

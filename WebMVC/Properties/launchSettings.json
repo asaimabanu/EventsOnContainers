@@ -1,6 +1,6 @@
 {
   "profiles": {
-    "WebMVC": {
+    "WebMvc": {
       "commandName": "Project",
       "launchBrowser": true,
       "environmentVariables": {

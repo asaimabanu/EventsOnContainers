@@ -1,8 +1,8 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using WebMVC.Services;
-using WebMVC.ViewModels;
+using WebMvc.Services;
+using WebMvc.ViewModels;
 
-namespace WebMVC.Controllers
+namespace WebMvc.Controllers
 {
     public class EventCatalogController : Controller
     {

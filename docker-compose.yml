@@ -42,7 +42,7 @@ services:
       CatalogUrl: http://eventcatalog
     ports:
       - "7300:80"
-    container_name: webshop
+    container_name: webeventshop
     networks:
       - frontend
     depends_on:

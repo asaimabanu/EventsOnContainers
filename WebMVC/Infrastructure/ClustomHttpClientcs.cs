@@ -1,4 +1,4 @@
-﻿namespace WebMVC.Infrastructure
+﻿namespace WebMvc.Infrastructure
 {
     public class CustomHttpClientcs : IHttpClient
     {

@@ -1,4 +1,4 @@
-﻿namespace WebMVC.Models
+﻿namespace WebMvc.Models
 {
     public class EventItem
     {
