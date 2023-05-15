@@ -15,7 +15,7 @@ namespace WebMvc.Services
         private readonly IHttpClient _httpClient;
         public EventCatalogService(IConfiguration config, IHttpClient client)
              {
-                 _baseUrl = $"{config["CatalogUrl"]}/api/event";
+                 _baseUrl = $"{config["CatalogUrl"]}/api/Event";
                  _httpClient = client;
             }
         public async Task<EventCatalog> GetEventcatalogItemAsync(int page, int take, int? category)
@@ -45,8 +45,8 @@ namespace WebMvc.Services
             {
                 items.Add(new SelectListItem
                 {
-                    Text = item.Value<String>("Category"),
-                    Value = item.Value<String>("Id")
+                    Text = item.Value<String>("category"),
+                    Value = item.Value<String>("id")
                 });
             }
             return items;

@@ -30,6 +30,6 @@ app.UseAuthorization();
 
 app.MapControllerRoute(
     name: "default",
-    pattern: "{controller=Catalog}/{action=Index}");
+    pattern: "{controller=EventCatalog}/{action=Index}");
 
 app.Run();

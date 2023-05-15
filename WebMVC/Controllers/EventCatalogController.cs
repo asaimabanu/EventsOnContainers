@@ -12,7 +12,7 @@ namespace WebMvc.Controllers
             _service = service;
 
         }
-        public async Task<IActionResult> IndexAsync(int? page, int? categoryFilterApplied)
+        public async Task<IActionResult> Index(int? page, int? categoryFilterApplied)
         {
             int itemsOnPage = 10;
             var EventCatalog = await _service.GetEventcatalogItemAsync(page ?? 0, itemsOnPage, categoryFilterApplied);
