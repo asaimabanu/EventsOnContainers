@@ -34,6 +34,7 @@ namespace EventsCatalogAPI.Controllers
                .Skip(PageIndex * PageSize)
                .Take(PageSize)
                .ToListAsync();
+            local_items = ChangePictureUrl(local_items);
             var model = new PaginatedViewModel()
             {
                 PageIndex = PageIndex,
@@ -83,8 +84,6 @@ namespace EventsCatalogAPI.Controllers
                 }
             }
         
-
-
             var local_items_count = await query.LongCountAsync();
             var local_items = await query
                 .OrderBy(q => q.EventCategoryId)
@@ -110,7 +109,7 @@ namespace EventsCatalogAPI.Controllers
         {
             items.ForEach(item => item.PictureUrl = item.PictureUrl
             .Replace("https://sampledomain",
-            _configuration["SampleDomainReplace"]));
+            "http://localhost:7015"));
             return items;
         }
     }

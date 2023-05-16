@@ -3,7 +3,7 @@
   <PropertyGroup Label="Globals">
     <ProjectVersion>2.1</ProjectVersion>
     <DockerTargetOS>Linux</DockerTargetOS>
-    <ProjectGuid>b54e0827-2ca4-4a57-8084-d8ec41a0cb21</ProjectGuid>
+    <ProjectGuid>f6db9138-d110-4d56-8d19-18aeebdac8db</ProjectGuid>
     <DockerLaunchAction>LaunchBrowser</DockerLaunchAction>
     <DockerServiceUrl>{Scheme}://localhost:{ServicePort}/swagger</DockerServiceUrl>
     <DockerServiceName>eventscatalogapi</DockerServiceName>
