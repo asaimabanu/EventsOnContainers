@@ -1,4 +1,3 @@
-
 version: '3.4'
 
 networks:
@@ -8,11 +7,15 @@ networks:
 services:
   eventcatalog:
     image: events/catalogapi
-    
     build:
+      context: ./EventsCatalogAPI
       dockerfile: Dockerfile
     environment: 
+      ConnectionString: "Data Source=mssqlserver;Initial Catalog=EventCatalogDb;User Id=sa;Password=ProductApi123(!);Connect Timeout=30;TrustServerCertificate=false;Encrypt=false;"
+      ExternalBaseUrl: http://localhost:7000
     ports:
+      - "7015:80"
+    container_name: eventscatalogapi
     networks:
       - frontend
       - backend
@@ -23,8 +26,24 @@ services:
     image: "mcr.microsoft.com/mssql/server:latest"
     environment:
       ACCEPT_EULA: Y
+      MSSQL_SA_PASSWORD: ProductApi123(!)
     ports:
+      - "1449:1433"
     container_name: eventscatalogsqlserver
     networks:
       - backend
 
+  webmvc:
+    image: events/webmvc
+    build:
+      context: .\WebMvc
+      dockerfile: Dockerfile
+    environment:
+      CatalogUrl: http://eventcatalog
+    ports:
+      - "7300:80"
+    container_name: webeventshop
+    networks:
+      - frontend
+    depends_on:
+      - eventcatalog
