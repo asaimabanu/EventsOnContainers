@@ -20,7 +20,7 @@
 
         //public int? EventLocationId { get; set; }
 
-        public EventLocation EventLocation { get; set; }
+        public string EventLocation { get; set; }
 
         public string IsOnline { get; set; }
 

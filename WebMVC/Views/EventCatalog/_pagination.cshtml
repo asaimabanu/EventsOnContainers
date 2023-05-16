@@ -4,8 +4,6 @@
     <div class="container">
         <article class="esh-pager-wrapper row">
             <nav>
-                 @if (Model.ActualPage > 0)
-                    {
                 <a class="esh-pager-item esh-pager-item--navigable @Model.Previous"
                    id="Previous"
                    asp-controller="EventCatalog"
@@ -14,21 +12,19 @@
                    aria-label="Previous">
                     Previous
                 </a>
-                    }
+
                 <span class="esh-pager-item">
                     Showing @Model.ItemsPerPage of @Model.TotalItems products - Page @(Model.ActualPage + 1) - @Model.TotalPages
                 </span>
-                @if (Model.ActualPage + 1 < Model.TotalPages)
-                    {
-                    <a class="esh-pager-item esh-pager-item--navigable @Model.Next"
-    id="Next"
+
+                <a class="esh-pager-item esh-pager-item--navigable @Model.Next"
+                   id="Next"
                    asp-controller="EventCatalog"
                    asp-action="Index"
                    asp-route-page="@(Model.ActualPage + 1)"
-    aria-label="Next">
-                        Next
-                    </a>
-                    }
+                   aria-label="Next">
+                    Next
+                </a>
             </nav>
         </article>
     </div>
