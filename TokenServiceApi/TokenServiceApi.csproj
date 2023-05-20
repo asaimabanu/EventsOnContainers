@@ -1,0 +1,28 @@
+<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp3.0</TargetFramework>
+    <UserSecretsId>013b95c4-e786-47a4-a072-c161812a71d3</UserSecretsId>
+    <DockerDefaultTargetOS>Linux</DockerDefaultTargetOS>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Compile Remove="Data\**" />
+    <Compile Remove="Quickstart\**" />
+    <Compile Remove="Views\**" />
+    <Content Remove="Data\**" />
+    <Content Remove="Quickstart\**" />
+    <Content Remove="Views\**" />
+    <EmbeddedResource Remove="Data\**" />
+    <EmbeddedResource Remove="Quickstart\**" />
+    <EmbeddedResource Remove="Views\**" />
+    <None Remove="Data\**" />
+    <None Remove="Quickstart\**" />
+    <None Remove="Views\**" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.VisualStudio.Azure.Containers.Tools.Targets" Version="1.18.1" />
+  </ItemGroup>
+
+</Project>
