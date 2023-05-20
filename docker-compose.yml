@@ -24,7 +24,55 @@ services:
     environment:
       ACCEPT_EULA: Y
     ports:
+      - "1899:1433"
     container_name: eventscatalogsqlserver
     networks:
       - backend
 
+  webmvc:
+    image: events/webmvc
+    build:
+      context: .\WebMvc
+      dockerfile: Dockerfile
+    environment:
+      CatalogUrl: http://eventcatalog
+      IdentityUrl: http://172.25.144.1:7400
+      CallBackUrl: http://localhost:7300
+    ports:
+      - "7300:80"
+    container_name: webeventshop
+    networks:
+      - frontend
+    depends_on:
+      - eventcatalog
+      - tokenserviceapi
+  
+  tokenserviceapi:
+    image: events/tokenserver
+    build:
+      context: .\TokenService
+      dockerfile: Dockerfile
+    environment:
+      MvcClient: http://localhost:7300
+      ConnectionString: "Data Source=tokensqlserver;Initial Catalog=EventTokenDb;User Id=sa;Password=ProductApi123(!);Connect Timeout=30;TrustServerCertificate=false;Encrypt=false;"
+    ports:
+      - "7400:80"
+    container_name: tokenserviceapi
+    networks:
+      - frontend
+      - backend
+    depends_on:
+      - tokensqlserver
+  
+  tokensqlserver:
+    image: "mcr.microsoft.com/mssql/server:latest"
+    environment:
+      ACCEPT_EULA: Y
+      MSSQL_SA_PASSWORD: ProductApi123(!)
+      SA_PASSWORD: ProductApi123(!)
+    ports:
+      - "1882:1433"
+    container_name: tokensqlserver
+    networks:
+      - backend
+      
