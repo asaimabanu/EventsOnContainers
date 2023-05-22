@@ -57,7 +57,7 @@ namespace EventsCatalogAPI.Migrations
                     b.Property<int>("EventCategoryId")
                         .HasColumnType("int");
 
-                    b.Property<DateTime>("EventEndDateTIme")
+                    b.Property<DateTime>("EventEndDateTime")
                         .HasColumnType("datetime2");
 
                     b.Property<DateTime>("EventStartDateTime")

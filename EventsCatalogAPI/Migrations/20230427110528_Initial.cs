@@ -34,7 +34,7 @@ namespace EventsCatalogAPI.Migrations
                     PictureUrl = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Duration = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     EventStartDateTime = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    EventEndDateTIme = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    EventEndDateTime = table.Column<DateTime>(type: "datetime2", nullable: false),
                     EventType = table.Column<bool>(type: "bit", nullable: false),
                     EventCategoryId = table.Column<int>(type: "int", nullable: false)
                 },

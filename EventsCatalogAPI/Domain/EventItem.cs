@@ -14,17 +14,19 @@ namespace EventsCatalogAPI.Domain
         
         public string PictureUrl {get ; set;}
 
-      //  public string Duration { get; set; }
-        
+        //public string Duration { get; set; }
+
         public DateTime EventStartDateTime { get; set; }
 
-        public DateTime EventEndDateTIme { get; set; }  
-        
-      //  public EventLocation Location { get; set; }
-        
-      //  public bool  EventType { get; set;}
-        
+        public DateTime? EventEndDateTime { get; set; }
+
+        public bool IsOnlineEvent { get; set; }
+
         public int EventCategoryId { get; set; }
+
+        public int EventLocationId { get; set; }
+
+        public virtual EventLocation EventLocation { get; set; }
         
         public virtual EventCategory EventCategory { get; set; }
         //create a blank solution 

@@ -55,11 +55,17 @@ namespace EventsCatalogAPI.Migrations
                     b.Property<int>("EventCategoryId")
                         .HasColumnType("int");
 
-                    b.Property<DateTime>("EventEndDateTIme")
+                    b.Property<DateTime?>("EventEndDateTime")
                         .HasColumnType("datetime2");
+
+                    b.Property<int>("EventLocationId")
+                        .HasColumnType("int");
 
                     b.Property<DateTime>("EventStartDateTime")
                         .HasColumnType("datetime2");
+
+                    b.Property<bool>("IsOnlineEvent")
+                        .HasColumnType("bit");
 
                     b.Property<string>("PictureUrl")
                         .IsRequired()
@@ -77,7 +83,42 @@ namespace EventsCatalogAPI.Migrations
 
                     b.HasIndex("EventCategoryId");
 
+                    b.HasIndex("EventLocationId");
+
                     b.ToTable("EventItems");
+                });
+
+            modelBuilder.Entity("EventsCatalogAPI.Domain.EventLocation", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
+
+                    b.Property<string>("AddressLine1")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("AddressLine2")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("City")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasMaxLength(100)
+                        .HasColumnType("nvarchar(100)");
+
+                    b.Property<string>("State")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("ZipCode")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("EventLocations");
                 });
 
             modelBuilder.Entity("EventsCatalogAPI.Domain.EventItem", b =>
@@ -88,7 +129,15 @@ namespace EventsCatalogAPI.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
+                    b.HasOne("EventsCatalogAPI.Domain.EventLocation", "EventLocation")
+                        .WithMany()
+                        .HasForeignKey("EventLocationId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
                     b.Navigation("EventCategory");
+
+                    b.Navigation("EventLocation");
                 });
 #pragma warning restore 612, 618
         }
