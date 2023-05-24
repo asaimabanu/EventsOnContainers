@@ -11,10 +11,10 @@ namespace WebMvc.Controllers
         {
             _service = service;
         }
-        public async Task<IActionResult> Index(int? page, int? typeFilterApplied, string? cityFilterApplied)
+        public async Task<IActionResult> Index(int? page, int? typesFilterApplied, string? cityFilterApplied)
         {
             int itemsOnPage = 10;
-            var catalog = await _service.GetEventItemsAsync(page ?? 0, itemsOnPage, typeFilterApplied, cityFilterApplied);
+            var catalog = await _service.GetEventItemsAsync(page ?? 0, itemsOnPage, typesFilterApplied, cityFilterApplied);
             var vm = new CatalogIndexViewModel
             {
                 Types = await _service.GetTypesAsync(),
@@ -27,7 +27,7 @@ namespace WebMvc.Controllers
                     ItemsPerPage = catalog.PageSize,
                     TotalPages = (int)Math.Ceiling((decimal)catalog.Count / itemsOnPage)
                 },
-                TypesFilterApplied = typeFilterApplied,
+                TypesFilterApplied = typesFilterApplied,
                 CityFilterApplied = cityFilterApplied
 
             };

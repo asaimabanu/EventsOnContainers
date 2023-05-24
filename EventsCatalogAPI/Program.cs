@@ -11,8 +11,9 @@ builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 builder.Services.AddDbContext<EventContext>(
-    options => options.UseSqlServer(configuration["ConnectionString"])
-    );
+    options => options.UseSqlServer(configuration["ConnectionString"]), 
+    contextLifetime: ServiceLifetime.Transient, 
+    optionsLifetime: ServiceLifetime.Transient);
 
 var app = builder.Build();
 var scope = app.Services.CreateScope();

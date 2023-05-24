@@ -24,7 +24,7 @@
                     filterQs = $"eventCategoryId={type.Value}";
                 }
 
-                if (string.IsNullOrEmpty(city))
+                if (!string.IsNullOrEmpty(city))
                 {
                     filterQs = (filterQs == string.Empty)
                                ? $"city={city}" :
