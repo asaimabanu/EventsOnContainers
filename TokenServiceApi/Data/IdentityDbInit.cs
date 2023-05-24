@@ -1,34 +1,34 @@
 ﻿using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
 
-namespace TokenService.Data
+namespace TokenServiceAPI.Data
+{
+    public static class IdentityDbInit
     {
-    public class IdentityDbInit
-        {
-
         private static UserManager<IdentityUser> _userManager;
-
-        public static async Task Initialize(ApplicationDbContext context, UserManager<IdentityUser> userManager)
-            {
-            _userManager = userManager ?? throw new ArgumentNullException(nameof(userManager));
-
-            //Create a new dataase when "Migrate" is used, rather than "Ensure Created"
+        //This example just creates an Administrator role and one Admin users
+        public static async Task Initialize(
+            ApplicationDbContext context,
+            UserManager<IdentityUser> userManager)
+        {
+            _userManager = userManager;
+            //create database schema if none exists
             context.Database.Migrate();
+            //If there is already an Administrator role, abort
+            //  if (context.Roles.Any(r => r.Name == "Administrator")) return;
 
-            //If there is an administrator role, abort
-            //if(context.Roles.Any(r => r.Name == "Administrator") return;
-
-            //Create the "Administrator" role
-            //await roleManager.CreateAsync(new IdentityRole("Administrator"));
-
+            //Create the Administartor Role
+            // await roleManager.CreateAsync(new IdentityRole("Administrator"));
             if (context.Users.Any(r => r.UserName == "me@myemail.com")) return;
-
-            //Create the default Admin account and assign the user the "Administrator" role
+            //Create the default Admin account and apply the Administrator role
             string user = "me@myemail.com";
-            string password = "Password@1";
-
-            await _userManager.CreateAsync(new IdentityUser { Email = user, UserName = user, EmailConfirmed = true}, password);
-            //await _userManager.AddToRoleAsync(await userManager.FindByNameAsync(user), "Administrator");
-            }
+            string password = "P@ssword1";
+            await _userManager.CreateAsync(new IdentityUser { UserName = user, Email = user, EmailConfirmed = true }, password);
+            //   await userManager.AddToRoleAsync(await userManager.FindByNameAsync(user), "Administrator");
         }
     }
+}

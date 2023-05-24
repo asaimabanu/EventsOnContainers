@@ -4,10 +4,10 @@
 
 using IdentityServer4.Models;
 
-namespace TokenServiceAPI
-{
-    public class ProcessConsentResult
+namespace IdentityServerHost.Quickstart.UI
     {
+    public class ProcessConsentResult
+        {
         public bool IsRedirect => RedirectUri != null;
         public string RedirectUri { get; set; }
         public Client Client { get; set; }
@@ -17,5 +17,5 @@ namespace TokenServiceAPI
 
         public bool HasValidationError => ValidationError != null;
         public string ValidationError { get; set; }
+        }
     }
-}

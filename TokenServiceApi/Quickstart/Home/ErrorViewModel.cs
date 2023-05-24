@@ -4,19 +4,19 @@
 
 using IdentityServer4.Models;
 
-namespace TokenServiceAPI
-{
-    public class ErrorViewModel
+namespace IdentityServerHost.Quickstart.UI
     {
-        public ErrorViewModel()
+    public class ErrorViewModel
         {
-        }
+        public ErrorViewModel()
+            {
+            }
 
         public ErrorViewModel(string error)
-        {
+            {
             Error = new ErrorMessage { Error = error };
-        }
+            }
 
         public ErrorMessage Error { get; set; }
+        }
     }
-}

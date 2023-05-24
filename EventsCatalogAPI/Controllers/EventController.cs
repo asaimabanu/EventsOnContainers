@@ -109,7 +109,7 @@ namespace EventsCatalogAPI.Controllers
         {
             items.ForEach(item => item.PictureUrl = item.PictureUrl
             .Replace("https://sampledomain",
-            "http://localhost:7015"));
+            _configuration["ExternalBaseUrl"]));
             return items;
         }
     }

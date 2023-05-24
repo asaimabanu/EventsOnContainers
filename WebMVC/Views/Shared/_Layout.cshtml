@@ -34,8 +34,8 @@
         <div class="container">
             <article class="row">
                 <section class="col-lg-7 col-md-6 col-xs-12">
-                    <a class="navbar-brand" routerLink="catalog">
-                        <a asp-area="" asp-controller="Catalog" asp-action="Index">
+                    <a class="navbar-brand" routerLink="eventcatalog">
+                        <a asp-area="" asp-controller="EventCatalog" asp-action="Index">
                             <img src="~/images/eventlogo.png" width="100" height="100"/>
                         </a>
                     </a>
@@ -50,10 +50,18 @@
                 </ul>
                 
             </div>
+            <div class="navbar-collapse-collapse">
+                <ul class="nav navbar-nav">
+
+                    <li><a asp-area="" asp-controller="EventCatalog" asp-action="Search">Search By Location</a></li>
+
+                </ul>
+
+            </div>
         </div>
     </header>
-    <div class="container body-content">
-        @RenderBody()
+    <div class="container body-content-search">
+    @RenderBody()
         <hr />
         <footer class="esh-app-footer">
             <div class="container">
@@ -70,8 +78,7 @@
                 </article>
             </div>
         </footer>
-    </div>
-   
+   </div>
 
     <environment include="Development">
         <script src="~/lib/jquery/dist/jquery.js"></script>

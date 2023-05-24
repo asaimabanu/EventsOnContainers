@@ -4,10 +4,10 @@
 
 using System.Collections.Generic;
 
-namespace TokenServiceAPI
-{
-    public class ConsentViewModel : ConsentInputModel
+namespace IdentityServerHost.Quickstart.UI
     {
+    public class ConsentViewModel : ConsentInputModel
+        {
         public string ClientName { get; set; }
         public string ClientUrl { get; set; }
         public string ClientLogoUrl { get; set; }
@@ -15,5 +15,5 @@ namespace TokenServiceAPI
 
         public IEnumerable<ScopeViewModel> IdentityScopes { get; set; }
         public IEnumerable<ScopeViewModel> ApiScopes { get; set; }
+        }
     }
-}

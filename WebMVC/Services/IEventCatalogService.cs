@@ -7,6 +7,8 @@ namespace WebMvc.Services
     {
         Task<IEnumerable<SelectListItem>> GetEventCategoriesAsync();
 
+        Task<IEnumerable<SelectListItem>> GetLocationsAsync();
+
         Task<EventCatalog> GetEventcatalogItemAsync(int page, int take, int? category);
     }
 }

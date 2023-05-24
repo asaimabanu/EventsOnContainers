@@ -3,10 +3,10 @@
 
 
 
-namespace TokenServiceAPI
-{
-    public class RedirectViewModel
+namespace IdentityServerHost.Quickstart.UI
     {
+    public class RedirectViewModel
+        {
         public string RedirectUrl { get; set; }
+        }
     }
-}

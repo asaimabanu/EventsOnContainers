@@ -3,6 +3,8 @@
     public interface IHttpClient
     {
         Task<String> GetStringAsync(string url, string authorizationtoken = null, string authorizationMethod = "Bearer");
+
+        Task<String> GetLocationsAsync();
     
     }
 }

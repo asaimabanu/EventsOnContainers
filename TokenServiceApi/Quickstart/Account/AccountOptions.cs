@@ -4,10 +4,10 @@
 
 using System;
 
-namespace TokenServiceAPI
-{
-    public class AccountOptions
+namespace IdentityServerHost.Quickstart.UI
     {
+    public class AccountOptions
+        {
         public static bool AllowLocalLogin = true;
         public static bool AllowRememberLogin = true;
         public static TimeSpan RememberMeLoginDuration = TimeSpan.FromDays(30);
@@ -16,5 +16,5 @@ namespace TokenServiceAPI
         public static bool AutomaticRedirectAfterSignOut = false;
 
         public static string InvalidCredentialsErrorMessage = "Invalid username or password";
+        }
     }
-}

@@ -1,5 +1,6 @@
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Authentication.OpenIdConnect;
+using Microsoft.IdentityModel.Tokens;
 using WebMvc.Infrastructure;
 using WebMvc.Models;
 using WebMvc.Services;
@@ -12,12 +13,12 @@ builder.Services.AddControllersWithViews();
 builder.Services.AddRazorPages();
 
 //Adding Interfaces
-builder.Services.AddSingleton<IHttpClient, CustomHttpClientcs>();
+builder.Services.AddSingleton<IHttpClient, CustomHttpClients>();
 builder.Services.AddTransient<IEventCatalogService, EventCatalogService>();
 builder.Services.AddTransient<IIdentiyService<ApplicationUser>, IdentityService>();
 
 var identityUrl = configuration["IdentityUrl"];
-var callbackUrl = configuration["CallBackUrl"];
+var callBackUrl = configuration["CallBackUrl"];
 
 builder.Services.AddAuthentication(options =>
 {
@@ -26,30 +27,28 @@ builder.Services.AddAuthentication(options =>
     options.DefaultSignInScheme = CookieAuthenticationDefaults.AuthenticationScheme;
     options.DefaultSignOutScheme = CookieAuthenticationDefaults.AuthenticationScheme;
 })
-    .AddCookie(CookieAuthenticationDefaults.AuthenticationScheme)
-    .AddOpenIdConnect(OpenIdConnectDefaults.AuthenticationScheme, options =>
-    {
-        options.SignInScheme = CookieAuthenticationDefaults.AuthenticationScheme;
-        options.Authority = identityUrl.ToString();
-        options.SignedOutRedirectUri = callbackUrl.ToString();
-        options.ClientId = "mvc";
-        options.ClientSecret = "secret";
-        options.RequireHttpsMetadata = false;
-        options.SaveTokens = true;
-        options.ResponseType = "code id_token";
-        options.GetClaimsFromUserInfoEndpoint = true;
-        options.Scope.Add("openid");
-        options.Scope.Add("profile");
-        options.Scope.Add("order");
-        options.Scope.Add("basket");
-        options.TokenValidationParameters = new Microsoft.IdentityModel.Tokens.TokenValidationParameters()
-            {
-            NameClaimType = "name",
-            RoleClaimType = "role"
-            };
-    }
-
-    );
+.AddCookie(CookieAuthenticationDefaults.AuthenticationScheme)
+.AddOpenIdConnect(OpenIdConnectDefaults.AuthenticationScheme, options =>
+{
+    options.SignInScheme = CookieAuthenticationDefaults.AuthenticationScheme;
+    options.Authority = identityUrl.ToString();
+    options.SignedOutRedirectUri = callBackUrl.ToString();
+    options.ClientId = "mvc";
+    options.ClientSecret = "secret";
+    options.RequireHttpsMetadata = false;
+    options.SaveTokens = true;
+    options.ResponseType = "code id_token";
+    options.GetClaimsFromUserInfoEndpoint = true;
+    options.Scope.Add("openid");
+    options.Scope.Add("profile");
+    options.Scope.Add("order");
+    options.Scope.Add("basket");
+    options.TokenValidationParameters = new TokenValidationParameters()
+        {
+        NameClaimType = "name",
+        RoleClaimType = "role",
+        };
+});
 
 
 var app = builder.Build();

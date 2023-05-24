@@ -51,6 +51,41 @@ namespace WebMvc.Services
             }
             return items;
         }
-    
+
+        public async Task<IEnumerable<SelectListItem>> GetLocationsAsync()
+            {
+            var items = new List<SelectListItem>
+                    {
+                    new SelectListItem
+                    {
+                        Text = "",
+                        Value = "",
+                        Selected = true
+                    }
+
+                    };
+
+            string response = await _httpClient.GetLocationsAsync();
+
+            if (response != string.Empty)
+                {
+                JArray state_list = JArray.Parse(response.ToString());
+
+                foreach (var item in state_list)
+                    {
+                    items.Add(new SelectListItem
+                        {
+                        Text = item.Value<String>("name"),
+                        Value = item.Value<String>("state_code")
+                        });
+                    }
+                return items;
+                }
+
+            return items;
+            }
+
+
+
+        }
     }
-}

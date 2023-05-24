@@ -1,9 +1,12 @@
-﻿using IdentityModel;
-using IdentityServer4;
+﻿using IdentityServer4;
 using IdentityServer4.Models;
-using Microsoft.AspNetCore.DataProtection;
+using Microsoft.Extensions.Configuration;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
 
-namespace TokenService
+namespace TokenServiceAPI
     {
     public static class Config
         {
@@ -46,7 +49,7 @@ namespace TokenService
                         ClientId = "mvc",
                         ClientName = "MVC Client",
                         AllowedGrantTypes = GrantTypes.Hybrid, //means user is redirected to identity server
-	                    ClientSecrets = new [] { new IdentityServer4.Models.Secret("secret".ToSha256())},
+	                    ClientSecrets = new [] { new Secret("secret".Sha256())},
                         RedirectUris = {$"{clientUrls["Mvc"]}/signin-oidc"},
                         PostLogoutRedirectUris={$"{clientUrls["Mvc"]}/signout-callback-oidc"},
                         AllowAccessTokensViaBrowser = false,
@@ -111,5 +114,6 @@ namespace TokenService
                // new IdentityResources.Email()
             };
             }
+
         }
     }

@@ -5,7 +5,6 @@ namespace WebMvc.Services
     {
     public interface IIdentiyService<T> 
         {
-        
         T Get(IPrincipal principal);
         }
     }
