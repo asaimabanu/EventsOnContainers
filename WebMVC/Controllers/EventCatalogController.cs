@@ -33,5 +33,10 @@ namespace WebMvc.Controllers
             };
             return View(vm);
         }
+        [Authorize]
+        public IActionResult About()
+        {
+            return View();
+        }
     }
 }
