@@ -1,13 +1,17 @@
+using Microsoft.AspNetCore.Authentication.Cookies;
+using Microsoft.AspNetCore.Authentication.OpenIdConnect;
+using Microsoft.IdentityModel.Tokens;
 using WebMvc.Infrastructure;
-using WebMvc.Services;
 
+using WebMvc.Models;
+using WebMvc.Services;
 var builder = WebApplication.CreateBuilder(args);
 var configuration = builder.Configuration;
 
 builder.Services.AddControllersWithViews();
 // Add services to the container.
 builder.Services.AddRazorPages();
-builder.Services.AddSingleton<IHttpClient, CustomHttpClientcs>();
+builder.Services.AddSingleton<IHttpClient, ClustomHttpClientcs>();
 builder.Services.AddTransient<IEventCatalogService, EventCatalogService>();
 builder.Services.AddTransient<IIdentityService<ApplicationUser>, IdentityService>();
 

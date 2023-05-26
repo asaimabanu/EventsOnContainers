@@ -1,8 +1,7 @@
 ﻿
-
 using Newtonsoft.Json;
 using System.Net.Http.Headers;
-namespace WebMvc.Infrastructurenamespace WebMvc.Infrastructure
+namespace WebMvc.Infrastructure
 {
     public class ClustomHttpClientcs : IHttpClient
     {
@@ -12,15 +11,15 @@ namespace WebMvc.Infrastructurenamespace WebMvc.Infrastructure
         {
             _httpClient = new HttpClient();
         }
-        async Task<string> IHttpClient.GetStringAsync(string url, string authorizationtoken, string authorizationMethod)
+        async Task<string> IHttpClient.GetStringAsync(string url, string authorizationToken, string authorizationMethod)
         {
-            var request = new HttpRequestMessage(HttpMethod.Get, url);
+            var  requestMessage = new HttpRequestMessage(HttpMethod.Get, url);
             if (authorizationToken != null)
             {
                 requestMessage.Headers.Authorization = new
                     AuthenticationHeaderValue(authorizationMethod, authorizationToken);
             }
-            var response = await _httpClient.SendAsync(request);
+            var response = await _httpClient.SendAsync(requestMessage);
             return await response.Content.ReadAsStringAsync();
         }
     }
