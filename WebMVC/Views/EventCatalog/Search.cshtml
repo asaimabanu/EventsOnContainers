@@ -46,37 +46,34 @@
     </a>
 </div>
 
-@*@<section class="esh-catalog-filters">
-    <div class="container">
-        <form asp-action="Index" asp-controller="EventCatalog" method="post">
-            <label class="esh-catalog-label" data-title="IsOnline">
-                <select asp-for="@Model.State_Selected" asp-items="@Model.IsOnline" class="search-state-filter"></select>
-            </label>
-            <label class="esh-catalog-label" data-title="State">
-                <select asp-for="@Model.State_Selected" asp-items="@Model.State" class="search-state-filter"></select>
-            </label>
-            <label class="esh-catalog-label" data-title="City">
-                <select asp-for="@Model.CitySelected" asp-items="@Model.City" class="esh-catalog-filter"></select>
-            </label>
-            <input class="esh-catalog-send" type="image" src="~/images/arrow-right.svg" />
-        </form>
-    </div>
-</section>*@
+
 
 <section class="esh-catalog-filters">
     <div class="container">
-        <form asp-action="Index" asp-controller="EventCatalog" method="post">
-            <input type="radio" name="IsOnline" id="isOnline" checked ="false" asp-for=@Model.IsOnline />
-            <label class="esh-catalog-label" data-title="State">
-                <select asp-for="@Model.State_Selected" asp-items="@Model.State" class="esh-catalog-filter"></select>
-            </label>
+    <form asp-action="Search" asp-controller="EventCatalog" method="post">
+        <label class="esh-catalog-label" data-title="IsOnline">
+            <select asp-for="@Model.EventTypeSelected" asp-items="@Model.EventType" class="esh-catalog-filter"></select>
+        </label>
+        @if(Model.EventTypeSelected == 1)
+                {
+                <label class="esh-catalog-label" data-title="City">
+                    <select asp-for="@Model.CitySelected" asp-items="@Model.Cities" class="esh-catalog-filter"></select>
+                </label>
+                }
+        @if(Model.EventTypeSelected == 2)
+                {
+                <label class="esh-catalog-label" data-title="City">
+                    <select asp-for="@Model.CitySelected" asp-items="@Model.Cities" class="esh-catalog-filter" disabled></select>
+                </label>
+                }
             <label class="esh-catalog-label" data-title="Category">
-                <select asp-for="@Model.CategoryFilterApplied" asp-items="@Model.Category" class="esh-catalog-filter"></select>
-            </label>
-            <input class="esh-catalog-send" type="image" src="~/images/arrow-right.svg" />
-        </form>
+            <select asp-for="@Model.CategoryFilterApplied" asp-items="@Model.Category" class="esh-catalog-filter"></select>
+        </label>
+                <input class="esh-catalog-send" type="image" src="~/images/arrow-right.svg" />
+    </form>
     </div>
 </section>
+
 <div class="container">
     @if (Model.EventCatalogItems.Count() > 0)
     {

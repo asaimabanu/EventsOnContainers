@@ -72,6 +72,6 @@ app.UseAuthorization();
 
 app.MapControllerRoute(
     name: "default",
-    pattern: "{controller=EventCatalog}/{action=Index}");
+    pattern: "{controller=EventCatalog}/{action=Search}");
 
 app.Run();

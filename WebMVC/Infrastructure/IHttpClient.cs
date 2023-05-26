@@ -4,7 +4,7 @@
     {
         Task<String> GetStringAsync(string url, string authorizationtoken = null, string authorizationMethod = "Bearer");
 
-        Task<String> GetLocationsAsync();
-    
+        //Task<String> GetLocationsAsync();
+        Task<String> GetCitiesAsync();
     }
 }
