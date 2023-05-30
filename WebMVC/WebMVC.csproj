@@ -6,11 +6,19 @@
     <ImplicitUsings>enable</ImplicitUsings>
     <UserSecretsId>890b85d4-30e2-426a-a3c2-977594d25e72</UserSecretsId>
     <DockerDefaultTargetOS>Linux</DockerDefaultTargetOS>
+    <DockerfileContext>..\..\..\..\..\..\github\My_Buddy_Projects\EventsOnContainer</DockerfileContext>
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="Models\City.cs" />
+    <Compile Remove="Models\Location.cs" />
+    <Compile Remove="Models\State.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Docker.DotNet" Version="3.125.15" />
     <PackageReference Include="Microsoft.AspNetCore.Authentication.OpenIdConnect" Version="3.1.0" />
-    <PackageReference Include="Microsoft.VisualStudio.Azure.Containers.Tools.Targets" Version="1.17.0" />
+    <PackageReference Include="Microsoft.VisualStudio.Azure.Containers.Tools.Targets" Version="1.18.1" />
     <PackageReference Include="Newtonsoft.Json" Version="13.0.3" />
   </ItemGroup>
 

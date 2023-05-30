@@ -11,10 +11,10 @@ services:
       context: .\EventsCatalogAPI
       dockerfile: Dockerfile
     environment:
-      ConnectionString: "Data Source=mssqlserver;Initial Catalog=CatalogDb;User Id=sa;Password=ProductApi123(!);Connect Timeout=30;TrustServerCertificate=false;"
-      ExternalBaseUrl: http://localhost:7000
+      ConnectionString: "Data Source=mssqlserver;Initial Catalog=CatalogDb;User Id=sa;Password=ProductApi123(!);Connect Timeout=30;TrustServerCertificate=false;Encrypt=false"
+      ExternalBaseUrl: http://localhost:7020
     ports:
-      - "7000:80"
+      - "7020:80"
     container_name: eventcatalogapi
     networks:
       - frontend
@@ -28,10 +28,10 @@ services:
       context: .\TokenServiceAPI
       dockerfile: Dockerfile
     environment:
-      ConnectionString: "Data Source=tokensqlserver;Initial Catalog=TokenServiceDb;User Id=sa;Password=ProductApi123(!);Connect Timeout=30;TrustServerCertificate=false;Encrypt=false;"
+      ConnectionString: "Data Source=mssqlserver;Initial Catalog=TokenServiceDb;User Id=sa;Password=ProductApi123(!);Connect Timeout=30;TrustServerCertificate=false;Encrypt=false"
       MvcClient: http://localhost:7500
     ports:
-      - "7800:80"
+      - "7080:80"
     container_name: eventstokenapi
     networks:
       - frontend
@@ -45,10 +45,10 @@ services:
       context: .\CartApi
       dockerfile: Dockerfile
     environment:
-      IdentityUrl: http://192.168.128.1:7800
+      IdentityUrl: http://172.24.144.1:7080
       ConnectionString: basket.data
     ports:
-      - "7010:80"
+      - "7040:80"
     container_name: eventscartapi
     networks:
       - frontend
@@ -64,7 +64,7 @@ services:
       dockerfile: Dockerfile
     environment:
       CatalogUrl: http://eventcatalog
-      IdentityUrl: http://192.168.128.1:7800
+      IdentityUrl: http://172.24.144.1:7080
       CallbackUrl: http://localhost:7500
     ports:
       - "7500:80"
@@ -93,6 +93,7 @@ services:
     environment:
       ACCEPT_EULA: Y
       MSSQL_SA_PASSWORD: ProductApi123(!)
+      SA_PASSWORD: ProductApi123(!)
     ports:
       - "1449:1433"
     container_name: eventstokensqlserver
@@ -102,7 +103,7 @@ services:
   basket.data:
     image: redis
     ports:
-      - "7050:6379"
+      - "7060:6379"
     container_name: basketdata
     networks:
       - backend

@@ -9,7 +9,7 @@ namespace EventsCatalogAPI.Data
         { }
         public DbSet<EventCategory> EventCategories { get; set; }
         public DbSet<EventItem> EventItems { get; set; }
-
+        //public DbSet<EventTicket> EventTickets {get; set;}
         public DbSet<EventLocation> EventLocations { get; set; }
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {

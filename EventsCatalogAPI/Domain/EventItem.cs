@@ -29,6 +29,15 @@ namespace EventsCatalogAPI.Domain
         public int EventCategoryId { get; set; }
         
         public virtual EventCategory EventCategory { get; set; }
+
+        //public IEnumerable<int>? ShowIds { get; set; }
+        //public virtual EventShow EventShows {get; set;}
+
+        
+        
+        
+        
+        
         //create a blank solution 
         // create a solution folder src 
         //in that create a services solution folder 

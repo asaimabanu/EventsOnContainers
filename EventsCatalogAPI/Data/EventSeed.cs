@@ -58,6 +58,15 @@ namespace EventsCatalogAPI.Data
                                 State = "WA",
                                 ZipCode = "98134"
                             }
+                            /*
+                             * EventShow = new EventShow
+                             * {
+                             *      ShowDate = DateTime.Now,
+                             *      ShowTime = DateTime.Now,
+                             *      TicketQuantity = 100
+                             * }
+                             * 
+                             */
               },
 
 
