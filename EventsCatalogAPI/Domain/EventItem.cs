@@ -30,11 +30,6 @@ namespace EventsCatalogAPI.Domain
         
         public virtual EventCategory EventCategory { get; set; }
 
-        public int TicketQuantity { get; set; }
-        
-        
-        
-        
         //public IEnumerable<int>? ShowIds { get; set; }
         //public virtual EventShow EventShows {get; set;}
 
