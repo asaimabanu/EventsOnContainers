@@ -11,6 +11,7 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="Controllers\EventTicketController.cs" />
     <Compile Remove="Domain\EventShow.cs" />
     <Compile Remove="Domain\EventTicket.cs" />
   </ItemGroup>
