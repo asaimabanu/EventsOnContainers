@@ -1,4 +1,4 @@
-<Project Sdk="Microsoft.NET.Sdk.Web">
+﻿<Project Sdk="Microsoft.NET.Sdk.Web">
 
   <PropertyGroup>
     <TargetFramework>net6.0</TargetFramework>
@@ -10,9 +10,32 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="Models\CartModels\**" />
+    <Compile Remove="ViewComponents\**" />
+    <Compile Remove="Views\Cart\**" />
+    <Compile Remove="Views\Shared\Components\**" />
+    <Content Remove="Models\CartModels\**" />
+    <Content Remove="ViewComponents\**" />
+    <Content Remove="Views\Cart\**" />
+    <Content Remove="Views\Shared\Components\**" />
+    <EmbeddedResource Remove="Models\CartModels\**" />
+    <EmbeddedResource Remove="ViewComponents\**" />
+    <EmbeddedResource Remove="Views\Cart\**" />
+    <EmbeddedResource Remove="Views\Shared\Components\**" />
+    <None Remove="Models\CartModels\**" />
+    <None Remove="ViewComponents\**" />
+    <None Remove="Views\Cart\**" />
+    <None Remove="Views\Shared\Components\**" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Compile Remove="Controllers\CartController.cs" />
     <Compile Remove="Models\City.cs" />
     <Compile Remove="Models\Location.cs" />
     <Compile Remove="Models\State.cs" />
+    <Compile Remove="Services\CartService.cs" />
+    <Compile Remove="Services\ICartService.cs" />
+    <Compile Remove="ViewModels\CartComponentViewModel.cs" />
   </ItemGroup>
 
   <ItemGroup>
