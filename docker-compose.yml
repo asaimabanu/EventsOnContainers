@@ -1,52 +1,110 @@
-
 version: '3.4'
 
 networks:
-  frontend:
-  backend:
+  frontend: 
+  backend: 
 
 services:
   eventcatalog:
-    image: events/catalogapi
-    
+    image: events/eventcatalog
     build:
-      context: ./EventsCatalogAPI
+      context: .\EventsCatalogAPI
       dockerfile: Dockerfile
     environment:
-      ConnectionString: "Data Source=mssqlserver;Initial Catalog=CatalogDb;User Id=sa;Password=EventsApi123(!);Connect Timeout=30;TrustServerCertificate=false;Encrypt=false;"
-      ExternalBaseUrl: http://localhost:7015
+      ConnectionString: "Data Source=mssqlserver;Initial Catalog=CatalogDb;User Id=sa;Password=ProductApi123(!);Connect Timeout=30;TrustServerCertificate=false;Encrypt=false"
+      ExternalBaseUrl: http://localhost:7020
     ports:
-      - "7015:80"
-    container_name: eventscatalogapi
+      - "7020:80"
+    container_name: eventcatalogapi
+    networks:
+      - frontend
+      - backend
+    depends_on: 
+      - mssqlserver
+
+  tokenserver:
+    image: events/tokenapi
+    build:
+      context: .\TokenServiceAPI
+      dockerfile: Dockerfile
+    environment:
+      ConnectionString: "Data Source=mssqlserver;Initial Catalog=TokenServiceDb;User Id=sa;Password=ProductApi123(!);Connect Timeout=30;TrustServerCertificate=false;Encrypt=false"
+      MvcClient: http://localhost:7500
+    ports:
+      - "7080:80"
+    container_name: eventstokenapi
     networks:
       - frontend
       - backend
     depends_on:
-      - mssqlserver
+      - tokensqlserver
 
-  webmvc:
-    image: events/webmvc
+  cart:
+    image: events/cartapi
     build:
+      context: .\CartApi
+      dockerfile: Dockerfile
+    environment:
+      IdentityUrl: http://:7080
+      ConnectionString: basket.data
+    ports:
+      - "7040:80"
+    container_name: eventscartapi
+    networks:
+      - frontend
+      - backend
+    depends_on:
+      - tokenserver
+      - basket.data
+
+  eventwebclient:
+    image: events/eventclient
+    build: 
       context: .\WebMvc
       dockerfile: Dockerfile
     environment:
       CatalogUrl: http://eventcatalog
+      IdentityUrl: http://:7080
+      CallbackUrl: http://localhost:7500
     ports:
-      - "8500:80"
-    container_name: eventwebshop
-    networks:
+      - "7500:80"
+    container_name: webshop
+    networks: 
       - frontend
     depends_on:
       - eventcatalog
-  
+      - tokensqlserver
+
+
   mssqlserver:
     image: "mcr.microsoft.com/mssql/server:latest"
     environment:
       ACCEPT_EULA: Y
-      MSSQL_SA_PASSWORD: EventsApi123(!)
+      MSSQL_SA_PASSWORD: ProductApi123(!)
     ports:
-      - "1558:1433"
-    container_name: eventscatalogsqlserver
+      - "7002:1433"
+    container_name: eventscatalogserver
+    networks:
+      - backend
+
+
+  tokensqlserver:
+    image: "mcr.microsoft.com/mssql/server:latest"
+    environment:
+      ACCEPT_EULA: Y
+      MSSQL_SA_PASSWORD: ProductApi123(!)
+      SA_PASSWORD: ProductApi123(!)
+    ports:
+      - "1449:1433"
+    container_name: eventstokensqlserver
+    networks:
+      - backend
+
+  basket.data:
+    image: redis
+    ports:
+      - "7060:6379"
+    container_name: basketdata
     networks:
       - backend
 

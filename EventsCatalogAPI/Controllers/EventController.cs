@@ -52,6 +52,13 @@ namespace EventsCatalogAPI.Controllers
             return Ok(list);
         }
 
+        [HttpGet("[action]")]
+        public async Task<IActionResult> EventLocations()
+            {
+            var list = await _eventContext.EventLocations.ToListAsync();
+            return Ok(list);
+            }
+
         [HttpGet("[action]/filter")]
         public async Task<IActionResult> EventItems(
             [FromQuery] int? EventId,
@@ -110,7 +117,7 @@ namespace EventsCatalogAPI.Controllers
         {
             items.ForEach(item => item.PictureUrl = item.PictureUrl
             .Replace("https://sampledomain",
-            _configuration["SampleDomainReplace"]));
+            _configuration["ExternalBaseUrl"]));
             return items;
         }
     }
