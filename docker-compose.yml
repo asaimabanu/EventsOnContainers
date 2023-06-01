@@ -25,7 +25,7 @@ services:
   tokenserver:
     image: events/tokenapi
     build:
-      context: .\TokenServiceAPI
+      context: .\TokenServiceApi
       dockerfile: Dockerfile
     environment:
       ConnectionString: "Data Source=mssqlserver;Initial Catalog=TokenServiceDb;User Id=sa;Password=ProductApi123(!);Connect Timeout=30;TrustServerCertificate=false;Encrypt=false"
@@ -45,7 +45,7 @@ services:
       context: .\CartApi
       dockerfile: Dockerfile
     environment:
-      IdentityUrl: http://:7080
+      IdentityUrl: http://172.20.224.1:7080
       ConnectionString: basket.data
     ports:
       - "7040:80"
@@ -64,7 +64,7 @@ services:
       dockerfile: Dockerfile
     environment:
       CatalogUrl: http://eventcatalog
-      IdentityUrl: http://:7080
+      IdentityUrl: http://172.20.224.1:7080
       CallbackUrl: http://localhost:7500
     ports:
       - "7500:80"
@@ -82,7 +82,7 @@ services:
       ACCEPT_EULA: Y
       MSSQL_SA_PASSWORD: ProductApi123(!)
     ports:
-      - "7002:1433"
+      - "7004:1433"
     container_name: eventscatalogserver
     networks:
       - backend

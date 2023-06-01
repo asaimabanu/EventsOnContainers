@@ -46,7 +46,10 @@ namespace WebMvc.Infrastructure
                         }
                     else
                         {
-                        filterQuery = string.IsNullOrEmpty(filterQuery) ? $"City={city}" : $"City={city}";
+                        if(city != null)
+                            {
+                            filterQuery = string.IsNullOrEmpty(filterQuery) ? $"City={city}" : $"City={city}";
+                            }
                         }
                     }
                 if (category.HasValue)

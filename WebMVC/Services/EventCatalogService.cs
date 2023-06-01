@@ -55,8 +55,8 @@ namespace WebMvc.Services
             {
                 items.Add(new SelectListItem
                 {
-                    Text = item.Value<String>("Category"),
-                    Value = item.Value<String>("Id")
+                    Text = item.Value<String>("category"),
+                    Value = item.Value<String>("id")
                 });
             }
             return items;

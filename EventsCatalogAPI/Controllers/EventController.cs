@@ -27,13 +27,15 @@ namespace EventsCatalogAPI.Controllers
         public async Task<IActionResult> EventItems([FromQuery] int PageIndex = 0,
             [FromQuery] int PageSize = 3)
         {
+            var query = (IQueryable<EventItem>)_eventContext.EventItems.Include(e => e.EventLocation);
 
-            var local_items_count = await _eventContext.EventItems.LongCountAsync();
-            var local_items = await _eventContext.EventItems
+            var local_items_count = await query.LongCountAsync();
+            var local_items = await query
                .OrderBy(q => q.EventCategoryId)
                .Skip(PageIndex * PageSize)
                .Take(PageSize)
                .ToListAsync();
+            local_items = ChangePictureUrl(local_items);
             var model = new PaginatedViewModel()
             {
                 PageIndex = PageIndex,
@@ -90,8 +92,6 @@ namespace EventsCatalogAPI.Controllers
                 }
             }
         
-
-
             var local_items_count = await query.LongCountAsync();
             var local_items = await query
                 .OrderBy(q => q.EventCategoryId)
