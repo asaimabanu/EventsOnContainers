@@ -1,4 +1,4 @@
-﻿using Microsoft.AspNetCore.DataProtection.KeyManagement;
+﻿ using Microsoft.AspNetCore.DataProtection.KeyManagement;
 using System.Net.Http.Headers;
 
 namespace WebMvc.Infrastructure
