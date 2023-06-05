@@ -57,7 +57,8 @@ namespace EventsCatalogAPI.Data
                                 City = "Seattle",
                                 State = "WA",
                                 ZipCode = "98134"
-                            }
+                            },
+                            TicketQuantity = 100
                             /*
                              * EventShow = new EventShow
                              * {
@@ -118,7 +119,8 @@ namespace EventsCatalogAPI.Data
                                 City = "San Francisco",
                                 State = "CA",
                                 ZipCode = "94107"
-                            }
+                            },
+                            TicketQuantity = 100
               },
                 new EventItem{EventCategoryId = 4,
                             Title = "SOUND BATH IN REDWOOD GROVE - GOLDEN GATE PARK",
@@ -135,6 +137,8 @@ namespace EventsCatalogAPI.Data
                                 State = "CA",
                                 ZipCode = "94122"
                             }
+                            ,
+                            TicketQuantity = 100
               },
                new EventItem{EventCategoryId = 5,
                             Title = "Come Meet A Black Person\" Anti-Racism Virtual Series",
@@ -144,7 +148,8 @@ namespace EventsCatalogAPI.Data
                             EventStartDateTime = new DateTime(2023,5,14,12,0,0),
                             EventEndDateTIme = new DateTime(2023,5,14,14,0,0),
                             IsOnline= true,
-                          
+                            TicketQuantity = 100
+
               },
                new EventItem{EventCategoryId = 6,
                              Title = "Network After Work: Denver at The Infinite Monkey Theorem",
@@ -161,6 +166,8 @@ namespace EventsCatalogAPI.Data
                                  State = "CO",
                                  ZipCode = "80205"
                              }
+                             ,
+                            TicketQuantity = 100
                },
                new EventItem{EventCategoryId = 6,
                              Title = "John Fisher's Breakfast Club (from Invest Success)",
@@ -176,7 +183,8 @@ namespace EventsCatalogAPI.Data
                                  City = "Denver",
                                  State = "CO",
                                  ZipCode = "80202"
-                             }
+                             },
+                            TicketQuantity = 100
                },
                new EventItem{EventCategoryId = 6,
                              Title  = "Speed Networking Event",
@@ -192,7 +200,8 @@ namespace EventsCatalogAPI.Data
                                  City = "Denver",
                                  State = "CO",
                                  ZipCode= "80202"
-                             }
+                             },
+                            TicketQuantity = 100
                },
                new EventItem{EventCategoryId = 6,
                              Title = "Deal Exchange",
@@ -208,7 +217,8 @@ namespace EventsCatalogAPI.Data
                                 City = "New York",
                                 State = "NY",
                                 ZipCode = "10001"
-                             }
+                             },
+                            TicketQuantity = 150
                },
                new EventItem{EventCategoryId = 6,
                              Title = "NYC Blockchain Network Meetup",
@@ -224,7 +234,8 @@ namespace EventsCatalogAPI.Data
                                 City = "New York",
                                 State = "NY",
                                 ZipCode = "10022"
-                             }
+                             },
+                            TicketQuantity = 200
                },
                new EventItem{EventCategoryId = 6,
                              Title  = "Multifamily Real Estate Networking Event",
@@ -240,7 +251,8 @@ namespace EventsCatalogAPI.Data
                                 City = "New York",
                                 State = "NY",
                                 ZipCode = "10001"
-                             }
+                             },
+                            TicketQuantity = 120
                },
                new EventItem{EventCategoryId = 6,
                              Title = "New York Tech Career Fair: Exclusive Tech Hiring Event",
@@ -249,7 +261,8 @@ namespace EventsCatalogAPI.Data
                              PictureUrl = "https://sampledomain/api/pic/12",
                              EventStartDateTime = new DateTime(2023,5,19,12,0,0),
                              EventEndDateTIme = new DateTime(2023,5,19,15,0,0),
-                             IsOnline = true
+                             IsOnline = true,
+                            TicketQuantity = 100
                },
                new EventItem{EventCategoryId = 6,
                              Title = "Diversity, Equity & Inclusion Conversations - Everybody At The Table",
@@ -258,7 +271,8 @@ namespace EventsCatalogAPI.Data
                              PictureUrl = "https://sampledomain/api/pic/13",
                              EventStartDateTime = new DateTime(2023,5,10,11,0,0),
                              EventEndDateTIme = new DateTime(2023,5,10,12,0,0),
-                             IsOnline = true
+                             IsOnline = true,
+                            TicketQuantity = 100
                },
                new EventItem{EventCategoryId = 6,
                              Title = "Business Planning for Small Business",
@@ -267,7 +281,8 @@ namespace EventsCatalogAPI.Data
                              PictureUrl = "https://sampledomain/api/pic/14",
                              EventStartDateTime = new DateTime(2023,6,21,10,0,0),
                              EventEndDateTIme = new DateTime(2023,6,21,12,0,0),
-                             IsOnline = true
+                             IsOnline = true,
+                            TicketQuantity = 150
                },
                new EventItem{EventCategoryId = 6,
                              Title = "Small Business Spotlight Networking Meeting",
@@ -276,7 +291,8 @@ namespace EventsCatalogAPI.Data
                              PictureUrl = "https://sampledomain/api/pic/15",
                              EventStartDateTime = new DateTime(2023,5,18,13,0,0),
                              EventEndDateTIme = new DateTime(2023,5,18,14,0,0),
-                             IsOnline = true
+                             IsOnline = true,
+                            TicketQuantity = 140
                },
                new EventItem{EventCategoryId = 6,
                              Title = "Business Plan 101",
@@ -285,7 +301,8 @@ namespace EventsCatalogAPI.Data
                              PictureUrl = "https://sampledomain/api/pic/16",
                              EventStartDateTime = new DateTime(2023,5,25,10,0,0),
                              EventEndDateTIme = new DateTime(2023,5,25,11,30,0),
-                             IsOnline = true
+                             IsOnline = true,
+                            TicketQuantity = 100
                },
                new EventItem{EventCategoryId = 6,
                              Title = "WEBINAR: TikTok for Small Business",
@@ -294,7 +311,8 @@ namespace EventsCatalogAPI.Data
                              PictureUrl = "https://sampledomain/api/pic/17",
                              EventStartDateTime = new DateTime(2023,5,9,19,0,0),
                              EventEndDateTIme = new DateTime(2023,5,9,20,30,0),
-                             IsOnline = true
+                             IsOnline = true,
+                            TicketQuantity = 100
                },
                new EventItem{EventCategoryId = 7,
                              Title = "Foxtrot",
@@ -309,8 +327,9 @@ namespace EventsCatalogAPI.Data
                                 City = "Denver",
                                 State = "CO",
                                 ZipCode = "80203"
-                             }
-                             
+                             },
+                            TicketQuantity = 220
+
                },
                new EventItem{EventCategoryId = 7,
                              Title = "Paint, Plant & Sip",
@@ -325,7 +344,8 @@ namespace EventsCatalogAPI.Data
                                 City = "Denver",
                                 State = "CO",
                                 ZipCode = "80211"
-                             }
+                             },
+                            TicketQuantity = 180
                },
                new EventItem{EventCategoryId = 7,
                              Title = "Happy Hour Taste of Tarot",
@@ -341,7 +361,8 @@ namespace EventsCatalogAPI.Data
                                 City = "Denver",
                                 State = "CO",
                                 ZipCode = "80203"
-                             }
+                             },
+                            TicketQuantity = 1000
                },
                new EventItem{EventCategoryId = 7,
                              Title = "'Friendly Fire' Game Night & Collab with Dominican Republic and St. Martin",
@@ -357,7 +378,8 @@ namespace EventsCatalogAPI.Data
                                 City = "New York",
                                 State = "NY",
                                 ZipCode = "10022"
-                             }
+                             },
+                            TicketQuantity = 100
                },
                new EventItem{EventCategoryId = 7,
                              Title = "Kaleidoscope: Poetic Forms and Collective Histories",
@@ -372,7 +394,8 @@ namespace EventsCatalogAPI.Data
                                 City = "New York",
                                 State = "NY",
                                 ZipCode = "10003"
-                             }
+                             },
+                            TicketQuantity = 1000
                },
                new EventItem{EventCategoryId = 7,
                              Title= "Water Color Workshops",
@@ -388,7 +411,8 @@ namespace EventsCatalogAPI.Data
                                 City = "New York",
                                 State = "NY",
                                 ZipCode = "10002"
-                             }
+                             },
+                            TicketQuantity = 180
                },
                new EventItem{EventCategoryId = 7,
                              Title = "One Piece Card Game - Online Treasure Cup [Oceania]",
@@ -396,7 +420,8 @@ namespace EventsCatalogAPI.Data
                              Price = 60,
                              PictureUrl = "https://sampledomain/api/pic/24",
                              EventStartDateTime = new DateTime(2023,5,19,7,0,0),
-                             IsOnline = true
+                             IsOnline = true,
+                            TicketQuantity = 120
                },
                new EventItem{EventCategoryId = 7,
                              Title = "Online Drawing Workshop: Hedgehog",
@@ -405,7 +430,8 @@ namespace EventsCatalogAPI.Data
                              PictureUrl = "https://sampledomain/api/pic/25",
                              EventStartDateTime = new DateTime(2023,5,16,13,30,0),
                              EventEndDateTIme = new DateTime(2023,5,16,14,30,0),
-                             IsOnline = true
+                             IsOnline = true,
+                            TicketQuantity = 200
                },
                new EventItem{EventCategoryId = 7,
                              Title = "How to Draw Musical Instruments!",
@@ -414,7 +440,8 @@ namespace EventsCatalogAPI.Data
                              PictureUrl = "https://sampledomain/api/pic/26",
                              EventStartDateTime = new DateTime(2023,5,24,14,0,0),
                              EventEndDateTIme = new DateTime(2023,5,24,17,0,0),
-                             IsOnline = true
+                             IsOnline = true,
+                            TicketQuantity = 150
                },
                new EventItem{EventCategoryId = 7,
                              Title = "Shibori Indigo Tie Dye for Beginners Virtual Workshop",
@@ -423,7 +450,8 @@ namespace EventsCatalogAPI.Data
                              PictureUrl = "https://sampledomain/api/pic/27",
                              EventStartDateTime = new DateTime(2023,5,13,13,0,0),
                              EventEndDateTIme = new DateTime(2023,5,13,15,0,0),
-                             IsOnline = true
+                             IsOnline = true,
+                            TicketQuantity = 100
                },
                new EventItem{EventCategoryId = 7,
                              Title = "NATURAL DYEING: On Fabric",
@@ -432,7 +460,8 @@ namespace EventsCatalogAPI.Data
                              PictureUrl = "https://sampledomain/api/pic/28",
                              EventStartDateTime = new DateTime(2023,5,20,9,0,0),
                              EventEndDateTIme = new DateTime(2023,5,20,10,30,0),
-                             IsOnline = true
+                             IsOnline = true,
+                            TicketQuantity = 100
                },
                new EventItem{EventCategoryId = 7,
                              Title = "Intro to Textural Embroidery",
@@ -441,7 +470,8 @@ namespace EventsCatalogAPI.Data
                              PictureUrl = "https://sampledomain/api/pic/29",
                              EventStartDateTime = new DateTime(2023,5,9,13,0,0),
                              EventEndDateTIme = new DateTime(2023,5,9,14,0,0),
-                             IsOnline = true
+                             IsOnline = true,
+                            TicketQuantity = 100
                },
                new EventItem{EventCategoryId = 8,
                              Title = "10th Annual Whiskey + Doughnuts",
@@ -457,7 +487,8 @@ namespace EventsCatalogAPI.Data
                                 City = "Denver",
                                 State = "CO",
                                 ZipCode = "80204"
-                             }
+                             },
+                            TicketQuantity = 100
                },
                new EventItem{EventCategoryId = 8,
                              Title = "Belgian Brew Fest 2023",
@@ -473,7 +504,8 @@ namespace EventsCatalogAPI.Data
                                 City = "Denver",
                                 State = "CO",
                                 ZipCode = "80221"
-                             }
+                             },
+                            TicketQuantity = 100
                },
                new EventItem{EventCategoryId = 8,
                              Title = "Passa Passa Caribbean Party!",
@@ -488,7 +520,8 @@ namespace EventsCatalogAPI.Data
                                 City = "Denver",
                                 State = "CO",
                                 ZipCode = "80205"
-                             }
+                             },
+                            TicketQuantity = 100
                },
                new EventItem{EventCategoryId = 8,
                              Title = "Great Wines of the World 2023: New York Grand Tasting",
@@ -504,7 +537,8 @@ namespace EventsCatalogAPI.Data
                                 City = "New York",
                                 State = "NY",
                                 ZipCode = "10011"
-                             }
+                             },
+                            TicketQuantity = 100
                },
                new EventItem{EventCategoryId = 8,
                              Title = "UPTOWN NIGHT MARKET",
@@ -520,7 +554,8 @@ namespace EventsCatalogAPI.Data
                                 City = "New York",
                                 State = "NY",
                                 ZipCode = "10027"
-                             }
+                             },
+                            TicketQuantity = 1000
                },
                new EventItem{EventCategoryId = 8,
                              Title = "Free Drinks Caribbean Thursdays at Katra NYC!!",
@@ -535,7 +570,8 @@ namespace EventsCatalogAPI.Data
                                 City = "New York",
                                 State = "NY",
                                 ZipCode = "10002"
-                             }
+                             },
+                            TicketQuantity = 100
                },
                new EventItem{EventCategoryId = 8,
                              Title = "The Taste of Jewish Culture",
@@ -544,7 +580,8 @@ namespace EventsCatalogAPI.Data
                              PictureUrl = "https://sampledomain/api/pic/36",
                              EventStartDateTime = new DateTime(2023,6,14,19,0,0),
                              EventEndDateTIme = new DateTime(2023,6,14,20,0,0),
-                             IsOnline = true
+                             IsOnline = true,
+                            TicketQuantity = 100
                },
                new EventItem{EventCategoryId = 8,
                              Title = "FREE Virtual Cooking Class: Cedar Plank Salmon with Orzo Tabouli",
@@ -553,7 +590,8 @@ namespace EventsCatalogAPI.Data
                              PictureUrl = "https://sampledomain/api/pic/37",
                              EventStartDateTime = new DateTime(2023,5,16,19,0,0),
                              EventEndDateTIme = new DateTime(2023,5,16,20,0,0),
-                             IsOnline = true
+                             IsOnline = true,
+                            TicketQuantity = 100
                },
                new EventItem{EventCategoryId = 8,
                              Title = "Plant-based cheese school with Chef Adam Sobel",
@@ -562,7 +600,8 @@ namespace EventsCatalogAPI.Data
                              PictureUrl = "https://sampledomain/api/pic/38",
                              EventStartDateTime = new DateTime(2023,5,13,16,0,0),
                              EventEndDateTIme = new DateTime(2023,5,13,17,0,0),
-                             IsOnline = true
+                             IsOnline = true,
+                            TicketQuantity = 100
                },
                new EventItem{EventCategoryId = 8,
                              Title = "Summer Pizza Party with Peter Reinhart",
@@ -571,7 +610,8 @@ namespace EventsCatalogAPI.Data
                              PictureUrl = "https://sampledomain/api/pic/39",
                              EventStartDateTime = new DateTime(2023,5,23,18,0,0),
                              EventEndDateTIme = new DateTime(2023,5,23,19,15,0),
-                             IsOnline = true
+                             IsOnline = true,
+                            TicketQuantity = 100
                },
                new EventItem{EventCategoryId = 8,
                              Title = "NCD Food Preservation Series: Freezing",
@@ -579,7 +619,8 @@ namespace EventsCatalogAPI.Data
                              Price = 0,
                              PictureUrl = "https://sampledomain/api/pic/40",
                              EventStartDateTime = new DateTime(2023,5,16,18,30,0),
-                             IsOnline = true
+                             IsOnline = true,
+                            TicketQuantity = 100
                },
                new EventItem{EventCategoryId = 8,
                              Title = "Food as Medicine: Nutrition and Bone Health (Webinar)",
@@ -588,7 +629,8 @@ namespace EventsCatalogAPI.Data
                              PictureUrl = "https://sampledomain/api/pic/41",
                              EventStartDateTime = new DateTime(2023,5,16,11,0,0),
                              EventEndDateTIme = new DateTime(2023,5,16,12,30,0),
-                             IsOnline = true
+                             IsOnline = true,
+                            TicketQuantity = 100
                },
                new EventItem{EventCategoryId = 9,
                              Title = "Denver Roller Derby Doubleheader",
@@ -604,7 +646,8 @@ namespace EventsCatalogAPI.Data
                                 City = "Denver",
                                 State = "CO",
                                 ZipCode = "80223"
-                             }
+                             },
+                            TicketQuantity = 100
                },
                new EventItem{EventCategoryId = 9,
                              Title = "Run for the Ribs 5k | Denver Q BBQ Fest | Empower Field | Memorial Weekend",
@@ -619,7 +662,8 @@ namespace EventsCatalogAPI.Data
                                 City = "Denver",
                                 State = "CO",
                                 ZipCode = "80204"
-                             }
+                             },
+                            TicketQuantity = 180
                },
                new EventItem{EventCategoryId = 9,
                              Title = "Spring Family Mountain Bike Day",
@@ -635,7 +679,8 @@ namespace EventsCatalogAPI.Data
                                 City = "Denver",
                                 State = "CO",
                                 ZipCode = "80223"
-                             }
+                             },
+                            TicketQuantity = 100
                },
                new EventItem{EventCategoryId = 9,
                              Title = "Chelsea Piers Fitness Yoga Class",
@@ -651,7 +696,8 @@ namespace EventsCatalogAPI.Data
                                 City = "New York",
                                 State = "NY",
                                 ZipCode = "10011"
-                             }
+                             },
+                            TicketQuantity = 1000
                },
                new EventItem{EventCategoryId = 9,
                              Title = "Paragon Run Club x New Balance Sponsored Run",
@@ -667,7 +713,8 @@ namespace EventsCatalogAPI.Data
                                 City = "New York",
                                 State = "NY",
                                 ZipCode = "10003"
-                             }
+                             },
+                            TicketQuantity = 100
                },
                new EventItem{EventCategoryId = 9,
                              Title = "Sunrise IronStrength Bootcamp in Central Park with ASICS",
@@ -683,7 +730,8 @@ namespace EventsCatalogAPI.Data
                                 City = "New York",
                                 State = "NY",
                                 ZipCode = "10023"
-                             }
+                             },
+                            TicketQuantity = 1200
                },
                new EventItem{EventCategoryId = 9,
                              Title = "Fearless Dance Fitness and Toning Class",
@@ -692,7 +740,8 @@ namespace EventsCatalogAPI.Data
                              PictureUrl = "https://sampledomain/api/pic/48",
                              EventStartDateTime = new DateTime(2023,7,3,10,30,0),
                              EventEndDateTIme = new DateTime(2023,7,3,11,30,0),
-                             IsOnline = true
+                             IsOnline = true,
+                            TicketQuantity = 100
                },
                new EventItem{EventCategoryId = 9,
                              Title = "DSEP Network & Learn - Supporting athletes from ethnic minority groups",
@@ -701,7 +750,8 @@ namespace EventsCatalogAPI.Data
                              PictureUrl = "https://sampledomain/api/pic/49",
                              EventStartDateTime = new DateTime(2023,5,25,13,0,0),
                              EventEndDateTIme = new DateTime(2023,5,25,14,0,0),
-                             IsOnline = true
+                             IsOnline = true,
+                            TicketQuantity = 100
                },
                new EventItem{EventCategoryId = 9,
                              Title = "Online Child Wellbeing and Protection in Sport (CWPS) Workshop",
@@ -710,7 +760,8 @@ namespace EventsCatalogAPI.Data
                              PictureUrl = "https://sampledomain/api/pic/50",
                              EventStartDateTime = new DateTime(2023,5,22,13,0,0),
                              EventEndDateTIme = new DateTime(2023,5,22,16,0,0),
-                             IsOnline = true
+                             IsOnline = true,
+                            TicketQuantity = 100
                },
                new EventItem{EventCategoryId = 9,
                              Title = "LGBTQ+ Inclusion in Recreational Cricket - First steps for clubs",
@@ -719,7 +770,8 @@ namespace EventsCatalogAPI.Data
                              PictureUrl = "https://sampledomain/api/pic/51",
                              EventStartDateTime = new DateTime(2023,6,15,14,30,0),
                              EventEndDateTIme = new DateTime(2023,6,15,16,0,0),
-                             IsOnline = true
+                             IsOnline = true,
+                            TicketQuantity = 120
                },
                new EventItem{EventCategoryId = 9,
                              Title = "Wild Camping 101 (online)",
@@ -728,7 +780,8 @@ namespace EventsCatalogAPI.Data
                              PictureUrl = "https://sampledomain/api/pic/52",
                              EventStartDateTime = new DateTime(2023,5,24,14,30,0),
                              EventEndDateTIme = new DateTime(2023,5,24,15,30,0),
-                             IsOnline = true
+                             IsOnline = true,
+                            TicketQuantity = 100
                },
                new EventItem{EventCategoryId = 9,
                              Title = "Intro to E-Biking Webinar",
@@ -737,7 +790,8 @@ namespace EventsCatalogAPI.Data
                              PictureUrl = "https://sampledomain/api/pic/53",
                              EventStartDateTime = new DateTime(2023,6,1,15,0,0),
                              EventEndDateTIme = new DateTime(2023,6,1,16,0,0),
-                             IsOnline = true
+                             IsOnline = true,
+                            TicketQuantity = 100
                }
           };
         }
