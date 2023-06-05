@@ -17,36 +17,6 @@ namespace WebMvc.Controllers
             {
             _service = service;
             }
-
-
-        public async Task<IActionResult> Index(int? page, int? categoryFilterApplied, int? eventTypeSelected, string? citySelected)
-            { 
-            int itemsOnPage = 10;
-                var EventCatalog = await _service.GetEventcatalogItemAsync(page ?? 0,itemsOnPage, categoryFilterApplied, eventTypeSelected, citySelected);
-
-
-                var vm = new EventCatalogIndexViewModel
-                    {
-                    EventType = _service.GetEventTypes(),
-                    
-                    Cities = await _service.GetCitiesAsync(),
-                    Category = await _service.GetEventCategoriesAsync(),
-                    EventCatalogItems = EventCatalog.Data,
-
-                    PaginationInfo = new PaginationInfo
-                        {
-                        ActualPage = EventCatalog.pageIndex,
-                        TotalItems = EventCatalog.count,
-                        ItemsPerPage = EventCatalog.pageSize,
-                        TotalPages = (int)Math.Ceiling((decimal)EventCatalog.count / itemsOnPage)
-                        },
-                    CategoryFilterApplied = categoryFilterApplied,
-                    EventTypeSelected=eventTypeSelected,
-                    CitySelected=citySelected
-
-                    };
-                return View(vm);
-                }
        
         public async Task<IActionResult> Search(int? page,
             int? categoryFilterApplied,
