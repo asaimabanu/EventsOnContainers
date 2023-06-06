@@ -7,6 +7,7 @@ namespace EventsCatalogAPI.Data
     {
         public static void Seed(EventContext context)
             {
+            
             context.Database.Migrate();
             //context.Database.Migrate();
             if (!context.EventCategories.Any())

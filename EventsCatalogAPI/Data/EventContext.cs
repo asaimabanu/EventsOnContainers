@@ -41,6 +41,8 @@ namespace EventsCatalogAPI.Data
                 e.Property(t => t.EventStartDateTime)
                 .IsRequired();
 
+                e.Property(t => t.TicketQuantity) .IsRequired();
+
                 e.Property(t => t.EventEndDateTIme) 
                 .IsRequired();
 

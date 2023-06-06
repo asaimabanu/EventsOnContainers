@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.DataProtection.KeyManagement;
 using Newtonsoft.Json;
 using System.Net.Http.Headers;
+using static System.Net.Mime.MediaTypeNames;
 
 namespace WebMvc.Infrastructure
 {
@@ -82,15 +83,21 @@ namespace WebMvc.Infrastructure
         private async Task<HttpResponseMessage> DoPostPutAysnc<T>(HttpMethod method, string uri,
             T item, string authorizationToken, string authorizationMethod)
             {
+            var json = new StringWriter();
+            var serializer = new JsonSerializer();
+            serializer.Serialize(json, item);
             var requestMessage = new HttpRequestMessage(method, uri);
-            requestMessage.Content = new StringContent(JsonConvert.SerializeObject(item),
-                System.Text.Encoding.UTF8, "application/json");
+            requestMessage.Content = new StringContent(json.ToString(), System.Text.Encoding.UTF8, Application.Json);
             if (authorizationToken != null)
                 {
                 requestMessage.Headers.Authorization = new
                     AuthenticationHeaderValue(authorizationMethod, authorizationToken);
                 }
             var response = await _httpClient.SendAsync(requestMessage);
+            if(response.StatusCode == System.Net.HttpStatusCode.BadRequest)
+                {
+                throw new HttpRequestException();
+                }
             if (response.StatusCode == System.Net.HttpStatusCode.InternalServerError)
                 {
                 throw new HttpRequestException();

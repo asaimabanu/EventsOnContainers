@@ -42,10 +42,10 @@ services:
   cart:
     image: events/cartapi
     build:
-      context: .\CartApi
+      context: .\CartAPI
       dockerfile: Dockerfile
     environment:
-      IdentityUrl: http://172.20.224.1:7080
+      IdentityUrl: http://172.19.160.1:7080
       ConnectionString: basket.data
     ports:
       - "7040:80"
@@ -64,8 +64,9 @@ services:
       dockerfile: Dockerfile
     environment:
       CatalogUrl: http://eventcatalog
-      IdentityUrl: http://172.20.224.1:7080
+      IdentityUrl: http://172.19.160.1:7080
       CallbackUrl: http://localhost:7500
+      CartUrl: http://cart
     ports:
       - "7500:80"
     container_name: webshop
@@ -74,6 +75,7 @@ services:
     depends_on:
       - eventcatalog
       - tokenserver
+      - cart
 
 
   mssqlserver:
@@ -82,7 +84,7 @@ services:
       ACCEPT_EULA: Y
       MSSQL_SA_PASSWORD: ProductApi123(!)
     ports:
-      - "7002:1433"
+      - "1447:1433"
     container_name: eventscatalogserver
     networks:
       - backend

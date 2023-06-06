@@ -8,6 +8,6 @@
         public string PictureUrl { get; set; }
         public decimal TicketPrice { get; set; }
         public int Quantity { get; set; }
-        public decimal OldTicketPrice { get; set; }
+        //public decimal OldTicketPrice { get; set; }
         }
     }

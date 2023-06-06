@@ -1,11 +1,13 @@
 ﻿using CartAPI.Data;
 using CartAPI.Models;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using System.Net;
 
 namespace CartAPI.Controllers
     {
+    [Authorize]
     [Route("api/[controller]")]
     [ApiController]
     public class CartController : ControllerBase
@@ -16,6 +18,7 @@ namespace CartAPI.Controllers
             {
             _cartRepository = cartRepository;
             }
+
         [HttpGet("{id}")]
         [ProducesResponseType (typeof(Cart), (int)HttpStatusCode.OK )]
         public async Task<ActionResult> Get(string  id)
@@ -26,14 +29,13 @@ namespace CartAPI.Controllers
 
         [HttpPost]
         [ProducesResponseType(typeof(Cart), (int)HttpStatusCode.OK)]
-        public async Task<ActionResult> Post(Cart basket)
+        public async Task<ActionResult> Post([FromBody]Cart basket)
             {
             var updated_basket = await _cartRepository.UpdateCartAsync(basket);
             return Ok(updated_basket);
             }
 
         [HttpDelete("{id}")]
-        [ProducesResponseType((int)HttpStatusCode.OK)]
         public async Task<ActionResult> Delete(string id)
             {
             var result = await _cartRepository.DeleteCartAsync(id);

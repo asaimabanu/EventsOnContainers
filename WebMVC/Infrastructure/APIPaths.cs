@@ -41,17 +41,17 @@ namespace WebMvc.Infrastructure
                     {
                     if (isOnline.Value == 2)
                         {
-                        filterQuery = string.IsNullOrEmpty(filterQuery) ?
+                        filterQuery += string.IsNullOrEmpty(filterQuery) ?
                                      $"IsOnline=true" : $"&IsOnline=true";
                         }
                     else
                         {
-                        filterQuery = string.IsNullOrEmpty(filterQuery) ? $"City={city}" : $"City={city}";
+                        filterQuery += string.IsNullOrEmpty(filterQuery) ? $"City={city}" : $"City={city}";
                         }
                     }
                 if (category.HasValue)
                     {
-                    filterQuery = string.IsNullOrEmpty(filterQuery) ?
+                    filterQuery += string.IsNullOrEmpty(filterQuery) ?
                                  $"EventCategoryId={category}" : $"&EventCategoryId={category}";
                     }
 

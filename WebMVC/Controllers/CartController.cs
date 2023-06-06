@@ -11,11 +11,11 @@ namespace WebMvc.Controllers
     public class CartController : Controller
     {
         private readonly ICartService _cartService;
-        private readonly ICatalogService _catalogService;
-        private readonly IIdentityService<ApplicationUser> _identityService;
+        private readonly IEventCatalogService _catalogService;
+        private readonly IIdentiyService<ApplicationUser> _identityService;
 
-        public CartController(IIdentityService<ApplicationUser> identityService,
-            ICartService cartService, ICatalogService catalogService)
+        public CartController(IIdentiyService<ApplicationUser> identityService,
+            ICartService cartService, IEventCatalogService catalogService)
         {
             _identityService = identityService;
             _cartService = cartService;
@@ -39,7 +39,7 @@ namespace WebMvc.Controllers
             try
             {
                 var user = _identityService.Get(HttpContext.User);
-                var basket = await _cartService.SetQuantities(user, quantities);
+                var basket = await _cartService.SetTicketQuantity(user, quantities);
                 var vm = await _cartService.UpdateCart(basket);
 
             }
@@ -55,23 +55,23 @@ namespace WebMvc.Controllers
 
 
         [HttpPost]
-        public async Task<IActionResult> AddToCart(CatalogItem productDetails)
+        public async Task<IActionResult> AddToCart(EventItem eventDetails)
         {
             try
             {
-                if (productDetails.Id > 0)
+                if (Convert.ToInt32(eventDetails.Id) > 0)
                 {
                     var user = _identityService.Get(HttpContext.User);
-                    var product = new CartItem()
+                    var cart_event = new CartItem()
                     {
                         Id = Guid.NewGuid().ToString(),
                         Quantity = 1,
-                        ProductName = productDetails.Name,
-                        PictureUrl = productDetails.PictureUrl,
-                        UnitPrice = productDetails.Price,
-                        ProductId = productDetails.Id.ToString()
+                        EventName = eventDetails.Title,
+                        PictureUrl = eventDetails.PictureUrl,
+                        TicketPrice = Convert.ToDecimal(eventDetails.Price),
+                        EventId = eventDetails.Id.ToString()
                     };
-                    await _cartService.AddItemToCart(user, product);
+                    await _cartService.AddItemToCart(user, cart_event);
                 }
             }
             catch (BrokenCircuitException)
@@ -80,7 +80,7 @@ namespace WebMvc.Controllers
                 HandleBrokenCircuitException();
             }
 
-            return RedirectToAction("Index", "Catalog");
+            return RedirectToAction("Search", "EventCatalog");
 
         }
 

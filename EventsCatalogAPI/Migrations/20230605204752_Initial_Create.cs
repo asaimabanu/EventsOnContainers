@@ -5,7 +5,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace EventsCatalogAPI.Migrations
 {
-    public partial class InitialCreate : Migration
+    public partial class Initial_Create : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -35,7 +35,8 @@ namespace EventsCatalogAPI.Migrations
                     EventStartDateTime = table.Column<DateTime>(type: "datetime2", nullable: false),
                     EventEndDateTIme = table.Column<DateTime>(type: "datetime2", nullable: false),
                     IsOnline = table.Column<bool>(type: "bit", nullable: false),
-                    EventCategoryId = table.Column<int>(type: "int", nullable: false)
+                    EventCategoryId = table.Column<int>(type: "int", nullable: false),
+                    TicketQuantity = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
                 {

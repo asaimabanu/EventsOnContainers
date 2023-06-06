@@ -7,7 +7,7 @@
 
         public decimal Total()
         {
-            return Math.Round(Items.Sum(x => x.UnitPrice * x.Quantity), 2);
+            return Math.Round(Items.Sum(x => x.TicketPrice * x.Quantity), 2);
         }
     }
 }
