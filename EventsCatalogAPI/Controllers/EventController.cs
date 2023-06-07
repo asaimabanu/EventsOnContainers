@@ -7,6 +7,9 @@ using System.Text.Json;
 using System.Text.Json.Serialization;
 using Microsoft.Extensions.Options;
 using static Microsoft.EntityFrameworkCore.DbLoggerCategory;
+using EventsCatalogAPI.Domain.DataTransferModels;
+using System.Net;
+using Newtonsoft.Json;
 
 namespace EventsCatalogAPI.Controllers
 {
@@ -111,6 +114,33 @@ namespace EventsCatalogAPI.Controllers
             return Ok(model);
 
         }
+
+        [HttpPost("[action]")]
+        public async Task<ActionResult> PostCategory([FromBody] EventCategory Category)
+            {
+
+            await _eventContext.EventCategories.AddAsync(Category);
+            _eventContext.SaveChangesAsync();
+            return Ok(Category);
+            }
+
+        [HttpPost("[action]")]
+        public async Task<IActionResult> PostLocation([FromBody] EventLocation EventLocation)
+            {
+
+            await _eventContext.EventLocations.AddAsync(EventLocation);
+            _eventContext.SaveChanges();
+            return Ok(EventLocation);
+            }
+
+        [HttpPost("[action]")]
+        [ProducesResponseType(typeof(EventItem), (int)HttpStatusCode.OK)]
+        public async Task<IActionResult> PostEvent([FromBody] EventItem eventItem)
+            {
+            await _eventContext.EventItems.AddAsync(eventItem);
+            _eventContext.SaveChanges();
+            return Ok(eventItem);
+            }
 
         private List<EventItem> ChangePictureUrl(List<EventItem> items)
         {

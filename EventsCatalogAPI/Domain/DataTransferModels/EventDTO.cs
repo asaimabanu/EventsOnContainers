@@ -1,9 +1,7 @@
-﻿namespace WebMvc.Models
-{
-    public class EventItem
+﻿namespace EventsCatalogAPI.Domain.DataTransferModels
     {
-        public int Id { get; set; }
-
+    public class EventDTO
+        {
         public string Title { get; set; }
 
         public string Description { get; set; }
@@ -12,13 +10,9 @@
 
         public string PictureUrl { get; set; }
 
-        //  public string Duration { get; set; }
-
         public DateTime EventStartDateTime { get; set; }
 
         public DateTime EventEndDateTIme { get; set; }
-
-        //public int? EventLocationId { get; set; }
 
         public EventLocation EventLocation { get; set; }
 
@@ -26,8 +20,8 @@
 
         public int EventCategoryId { get; set; }
 
-        public string EventCategory { get; set; }
+        public EventCategory EventCategory { get; set; }
 
         public int TicketQuantity { get; set; }
+        }
     }
-}

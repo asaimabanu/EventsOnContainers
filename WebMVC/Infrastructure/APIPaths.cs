@@ -78,7 +78,7 @@ namespace WebMvc.Infrastructure
 
             public static string UpdateBasket(string baseUri)
                 {
-                return baseUri;
+                return $"{baseUri}/";
                 }
 
             public static string CleanBasket(string baseUri, string basketId)

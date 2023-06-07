@@ -21,7 +21,7 @@ namespace CartAPI.Controllers
 
         [HttpGet("{id}")]
         [ProducesResponseType (typeof(Cart), (int)HttpStatusCode.OK )]
-        public async Task<ActionResult> Get(string  id)
+        public async Task<IActionResult> Get(string  id)
             {
             var basket = await _cartRepository.GetCartAsync (id);
             return Ok (basket);
@@ -29,14 +29,15 @@ namespace CartAPI.Controllers
 
         [HttpPost]
         [ProducesResponseType(typeof(Cart), (int)HttpStatusCode.OK)]
-        public async Task<ActionResult> Post([FromBody]Cart basket)
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
+        public async Task<IActionResult> Post([FromBody]Cart basket)
             {
             var updated_basket = await _cartRepository.UpdateCartAsync(basket);
             return Ok(updated_basket);
             }
 
         [HttpDelete("{id}")]
-        public async Task<ActionResult> Delete(string id)
+        public async Task<IActionResult> Delete(string id)
             {
             var result = await _cartRepository.DeleteCartAsync(id);
             return Ok(result);

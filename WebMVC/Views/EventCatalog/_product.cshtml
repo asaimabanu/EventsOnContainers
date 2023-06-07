@@ -10,11 +10,16 @@
     <div class="esh-catalog-price">
         <span>@Model.Price</span>
     </div>
-    <input type="hidden" asp-for="@Model.EventCategoryId" name="type" />
-    <input type="hidden" asp-for="@Model.EventCategory" name="typeId" />
+    <div class="esh-catalog-label">
+        <span>
+            <label>Available Seats: @Model.TicketQuantity</label>
+        </span>
+    </div>
+    <input type="hidden" asp-for="@Model.EventCategoryId" name="typeId" />
+    <input type="hidden" asp-for="@Model.EventCategory" name="type" />
     <input type="hidden" asp-for="@Model.Description" name="description" />
     <input type="hidden" asp-for="@Model.Id" name="id" />
-    <input type="hidden" asp-for="@Model.Title" name="name" />
+    <input type="hidden" asp-for="@Model.Title" name="title" />
     <input type="hidden" asp-for="@Model.PictureUrl" name="pictureUrl" />
     <input type="hidden" asp-for="@Model.Price" name="price" />
 </form>
