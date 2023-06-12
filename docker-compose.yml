@@ -99,8 +99,8 @@ services:
       CallbackUrl: http://localhost:7500
       OrderUrl: http://order
       CartUrl: http://cart
-      StripePublicKey: pk_test_51NHat7C10pLXX2rWrrtVFSdqz8gPOvCfMsT8KN5SJlSDqgeFuRgjp7yMoIfb9CiasOOhyHtvIGHpt6G70xqBLqYD00YMpzrBxc
-      StripePrivateKey: sk_test_51NHat7C10pLXX2rWN3gRusAeic873kLdFhojHqC28MtanPnBcxt7qWDKUfkCAdpMPMjuw8NkdJ0tLWa9s68R6sE500lmc75lLI
+      StripePublicKey: pk_test_51NEPo0GKwP748m7L2Kp8y3CLEdQEFWNdcyQDso7cFqq7VkREddZXRr28V1HCvvuq46caHme7v3iGLQRW1WAnWZsi00CpI9f9xZ
+      StripePrivateKey: sk_test_51NEPo0GKwP748m7LPe8CXkWizejbFiYCePIKYz5UB3UXgQ04dHJhZhg0ucnPCQAckLY3dA1pQjXCvgfwm7eterqw00SEyjNnip
     ports:
       - "7500:80"
     container_name: webshop_events
