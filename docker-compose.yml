@@ -45,7 +45,7 @@ services:
       context: .\CartApi
       dockerfile: Dockerfile
     environment:
-      IdentityUrl: http://192.168.240.1:7080
+      IdentityUrl: http://172.28.224.1:7080
       ConnectionString: basket.data
     ports:
       - "7040:80"
@@ -69,8 +69,8 @@ services:
         max-file: "10"
       }
     environment:
-      IdentityUrl: http://192.168.240.1:7080
-      ConnectionString: "Data Source=mssqlserver;Initial Catalog=OrdersDb;User Id=sa;Password=ProductApi123(!);Connect Timeout=30;TrustServerCertificate=false;Encrypt=false;"
+      IdentityUrl: http://172.28.224.1:7080
+      ConnectionString: "Data Source=mssqlserver;Initial Catalog=OrdersDb1;User Id=sa;Password=ProductApi123(!);Connect Timeout=30;TrustServerCertificate=false;Encrypt=false;"
     ports:
       - "7030:80"
     container_name: jewelsorderapi
@@ -95,7 +95,7 @@ services:
       }
     environment:
       CatalogUrl: http://eventcatalog
-      IdentityUrl: http://192.168.240.1:7080
+      IdentityUrl: http://172.28.224.1:7080
       CallbackUrl: http://localhost:7500
       OrderUrl: http://order
       CartUrl: http://cart

@@ -9,20 +9,20 @@ namespace OrderApi.Models
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int Id { get; set; }
 
-        public string ProductName { get; set; }
+        public string EventName { get; set; }
         public string PictureUrl { get; set; }
-        public decimal UnitPrice { get; set; }
+        public decimal TicketPrice { get; set; }
 
         public int Units { get; set; }
-        public int ProductId { get;  set; }
+        public int EventId { get;  set; }
         public int OrderId { get; set; }
 
-        public OrderItem(int productId, string productName, decimal unitPrice, string pictureUrl, int units = 1)
+        public OrderItem(int eventId, string eventName, decimal ticketPrice, string pictureUrl, int units = 1)
         {
-            ProductId = productId;
+            EventId = eventId;
 
-            ProductName = productName;
-            UnitPrice = unitPrice;
+            EventName = eventName;
+            TicketPrice = ticketPrice;
 
             Units = units;
             PictureUrl = pictureUrl;

@@ -12,8 +12,8 @@ using OrderApi.Data;
 namespace OrderApi.Migrations
 {
     [DbContext(typeof(OrdersContext))]
-    [Migration("20230114201639_initial")]
-    partial class initial
+    [Migration("20230611234444_sample")]
+    partial class sample
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -79,6 +79,13 @@ namespace OrderApi.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
+                    b.Property<int>("EventId")
+                        .HasColumnType("int");
+
+                    b.Property<string>("EventName")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<int>("OrderId")
                         .HasColumnType("int");
 
@@ -86,14 +93,7 @@ namespace OrderApi.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("ProductId")
-                        .HasColumnType("int");
-
-                    b.Property<string>("ProductName")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<decimal>("UnitPrice")
+                    b.Property<decimal>("TicketPrice")
                         .HasColumnType("decimal(18,2)");
 
                     b.Property<int>("Units")
@@ -108,13 +108,11 @@ namespace OrderApi.Migrations
 
             modelBuilder.Entity("OrderApi.Models.OrderItem", b =>
                 {
-                    b.HasOne("OrderApi.Models.Order", "Order")
+                    b.HasOne("OrderApi.Models.Order", null)
                         .WithMany("OrderItems")
                         .HasForeignKey("OrderId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
-
-                    b.Navigation("Order");
                 });
 
             modelBuilder.Entity("OrderApi.Models.Order", b =>

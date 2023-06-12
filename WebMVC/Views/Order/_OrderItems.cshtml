@@ -17,11 +17,11 @@
             </section>
             <section class="esh-orders_new-item esh-orders_new-item--middle col-xs-4">
                 @item.EventName
-                <input type="hidden" value="@item.EventName" name=@("orderitems[" + i + "].ProductName") />
+                <input type="hidden" value="@item.EventName" name=@("orderitems[" + i + "]EventName") />
             </section>
             <section class="esh-orders_new-item esh-orders_new-item--middle col-xs-1">
                 $ @item.UnitPrice
-                <input type="hidden" value="@item.UnitPrice" name=@("orderitems[" + i + "].UnitPrice") />
+                <input type="hidden" value="@item.UnitPrice" name=@("orderitems[" + i + "].TicketPrice") />
             </section>
             <section class="esh-orders_new-item esh-orders_new-item--middle col-xs-1">
                 @item.Units
