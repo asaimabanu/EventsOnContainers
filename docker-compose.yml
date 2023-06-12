@@ -28,7 +28,7 @@ services:
       context: .\TokenServiceApi
       dockerfile: Dockerfile
     environment:
-      ConnectionString: "Data Source=mssqlserver;Initial Catalog=TokenServiceDb;User Id=sa;Password=ProductApi123(!);Connect Timeout=30;TrustServerCertificate=false;Encrypt=false"
+      ConnectionString: "Data Source=tokensqlserver;Initial Catalog=TokenServiceDb;User Id=sa;Password=ProductApi123(!);Connect Timeout=30;TrustServerCertificate=false;Encrypt=false"
       MvcClient: http://localhost:7500
     ports:
       - "7080:80"
@@ -37,7 +37,7 @@ services:
       - frontend
       - backend
     depends_on:
-      - mssqlserver
+      - tokensqlserver
 
   cart:
     image: events/cartapi
