@@ -28,7 +28,7 @@ namespace WebMvc.Services
             var context = _httpContextAccesor.HttpContext;
             return await context.GetTokenAsync("access_token");
         }
-        public async Task<int> CreateOrder(Order order)
+        public async Task<int> CreateOrder(OrderToApi order)
         {
             var token = await GetUserTokenAsync();
             var addNewOrderUri = APIPaths.Order.AddNewOrder(_remoteServiceBaseUrl);
@@ -39,6 +39,10 @@ namespace WebMvc.Services
             {
                 throw new Exception("Error creating order, try later.");
             }
+            /*if(response.StatusCode == System.Net.HttpStatusCode.BadRequest)
+                {
+                throw new Exception("Send the request again, Bad Request");
+                }*/
 
             var jsonString = response.Content.ReadAsStringAsync();
             jsonString.Wait();
@@ -56,5 +60,33 @@ namespace WebMvc.Services
             var response = JsonConvert.DeserializeObject<Order>(dataString);
             return response;
         }
-    }
+
+        public OrderToApi MapOrderToOrderApi(Order order)
+            {
+            var orderApi = new OrderToApi();
+
+            orderApi.BuyerId = order.BuyerId;
+            orderApi.OrderId = order.OrderId;
+            orderApi.OrderDate = order.OrderDate;
+            orderApi.Address = order.Address;
+            orderApi.FirstName = order.FirstName;
+            orderApi.LastName = order.LastName;
+            orderApi.UserName = order.UserName;
+            orderApi.PaymentAuthCode = order.PaymentAuthCode;
+            orderApi.OrderStatus = (OrderStatus)1;
+            orderApi.OrderTotal = order.OrderTotal;
+
+            order.OrderItems.ForEach(o =>  orderApi.OrderItems.Add(
+                new OrderItem()
+                    {
+                    EventId = o.EventId,
+                    PictureUrl = o.PictureUrl,
+                    EventName = o.EventName,
+                    TicketPrice = o.TicketPrice,
+                    Units = o.Units,
+                    }));
+
+            return orderApi;
+            }
+        }
 }

@@ -5,6 +5,8 @@ namespace WebMvc.Services
     public interface IOrderService
     {
         Task<Order> GetOrder(string orderId);
-        Task<int> CreateOrder(Order order);
+        Task<int> CreateOrder(OrderToApi order);
+
+        OrderToApi MapOrderToOrderApi(Order order);
     }
 }

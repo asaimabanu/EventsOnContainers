@@ -17,7 +17,7 @@ namespace TokenServiceAPI.Data
         {
             _userManager = userManager;
             //create database schema if none exists
-            context.Database.Migrate();
+           context.Database.Migrate();
             //If there is already an Administrator role, abort
             //  if (context.Roles.Any(r => r.Name == "Administrator")) return;
 

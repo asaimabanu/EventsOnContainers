@@ -98,6 +98,7 @@ namespace WebMvc.Services
         public Order MapCartToOrder(Cart cart)
         {
             var order = new Order();
+            
             order.OrderTotal = 0;
 
             cart.Items.ForEach(x =>
@@ -105,11 +106,11 @@ namespace WebMvc.Services
                 order.OrderItems.Add(new OrderItem()
                 {
                     EventId = int.Parse(x.EventId),
-
+                    
                     PictureUrl = x.PictureUrl,
                     EventName = x.EventName,
                     Units = x.Quantity,
-                    UnitPrice = x.TicketPrice
+                    TicketPrice = x.TicketPrice
                 });
                 order.OrderTotal += (x.Quantity * x.TicketPrice);
             });

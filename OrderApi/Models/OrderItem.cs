@@ -12,7 +12,6 @@ namespace OrderApi.Models
         public string EventName { get; set; }
         public string PictureUrl { get; set; }
         public decimal TicketPrice { get; set; }
-
         public int Units { get; set; }
         public int EventId { get;  set; }
         public int OrderId { get; set; }
