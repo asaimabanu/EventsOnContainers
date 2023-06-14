@@ -3,14 +3,8 @@ using System.ComponentModel.DataAnnotations;
 
 namespace WebMvc.Models.OrderModels
 {
-    public enum OrderStatus
-    {
-        Preparing = 1,
-        Shipped = 2,
-        Delivered = 3
-    }
-
-    public class Order
+ 
+    public class ModifiedOrder
     {
         [BindNever]
         public int OrderId { get; set; }
@@ -35,14 +29,14 @@ namespace WebMvc.Models.OrderModels
         [BindNever]
         public string BuyerId { get; set; }
 
-        public string StripeToken { get; set; }
+        //public string StripeToken { get; set; }
 
         public OrderStatus OrderStatus { get; set; }
 
         // See the property initializer syntax below. This
         // initializes the compiler generated field for this
         // auto-implemented property.
-        public List<OrderItem> OrderItems { get; } = new List<OrderItem>();
+        public List<OrderItem> OrderItems { get; set; }
 
 
         public string PaymentAuthCode { get; set; }

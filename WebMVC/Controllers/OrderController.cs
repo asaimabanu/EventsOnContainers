@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authentication.OpenIdConnect;
+using Microsoft.AspNetCore.Mvc;
 using Polly.CircuitBreaker;
 using Stripe;
 using WebMvc.Models;
@@ -80,8 +81,22 @@ namespace WebMvc.Controllers
                     if (stripeCharge.Id != null)
                     {
                         order.PaymentAuthCode = stripeCharge.Id;
+                    var modifiedOrder = new ModifiedOrder
+                    {
+                        OrderId =order.OrderId,
+                        FirstName = order.FirstName,
+                        LastName = order.LastName,
+                        OrderDate = order.OrderDate,
+                        UserName = user.Email,
+                        BuyerId = user.Email,
+                        OrderStatus = OrderStatus.Preparing,
+                        Address = order.Address,
+                        PaymentAuthCode = order.PaymentAuthCode,
+                        OrderTotal = order.OrderTotal,
+                        OrderItems = order.OrderItems
+                    };
 
-                        int orderId = await _orderSvc.CreateOrder(order);
+                    int orderId = await _orderSvc.CreateOrder(modifiedOrder);
 
                         await _cartSvc.ClearCart(user);
                         return RedirectToAction("Complete", new { id = orderId, userName = user.UserName });

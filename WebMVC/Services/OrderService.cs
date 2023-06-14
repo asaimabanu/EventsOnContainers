@@ -28,7 +28,7 @@ namespace WebMvc.Services
             var context = _httpContextAccesor.HttpContext;
             return await context.GetTokenAsync("access_token");
         }
-        public async Task<int> CreateOrder(Order order)
+        public async Task<int> CreateOrder(ModifiedOrder order)
         {
             var token = await GetUserTokenAsync();
             var addNewOrderUri = APIPaths.Order.AddNewOrder(_remoteServiceBaseUrl);
@@ -40,7 +40,7 @@ namespace WebMvc.Services
                 throw new Exception("Error creating order, try later.");
             }
 
-            var jsonString = response.Content.ReadAsStringAsync();
+            var jsonString =  response.Content.ReadAsStringAsync();
             jsonString.Wait();
             dynamic data = JObject.Parse(jsonString.Result);
             string value = data.orderId;

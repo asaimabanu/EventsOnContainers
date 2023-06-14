@@ -17,17 +17,21 @@
             </section>
             <section class="esh-orders_new-item esh-orders_new-item--middle col-xs-4">
                 @item.EventName
-                <input type="hidden" value="@item.EventName" name=@("orderitems[" + i + "]EventName") />
+                <input type="hidden" value="@item.EventName" name=@("orderitems[" + i + "].EventName") />
+            </section>
+            <section class="esh-orders_new-item esh-orders_new-item--middle col-xs-4">
+                @item.EventId
+                <input type="hidden" value="@item.EventId" name=@("orderitems[" + i + "].EventId") />
             </section>
             <section class="esh-orders_new-item esh-orders_new-item--middle col-xs-1">
-                $ @item.UnitPrice
-                <input type="hidden" value="@item.UnitPrice" name=@("orderitems[" + i + "].TicketPrice") />
+                $ @item.TicketPrice
+                <input type="hidden" value="@item.TicketPrice" name=@("orderitems[" + i + "].TicketPrice") />
             </section>
             <section class="esh-orders_new-item esh-orders_new-item--middle col-xs-1">
                 @item.Units
                 <input type="hidden" value="@item.Units" name=@("orderitems[" + i + "].Units") />
             </section>
-            <section class="esh-orders_new-item esh-orders_new-item--middle col-xs-2">$ @Math.Round(item.Units * item.UnitPrice, 2)</section>
+            <section class="esh-orders_new-item esh-orders_new-item--middle col-xs-2">$ @Math.Round(item.Units * item.TicketPrice, 2)</section>
         </article>
     }
 </section>

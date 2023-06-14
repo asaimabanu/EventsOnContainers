@@ -109,7 +109,7 @@ namespace WebMvc.Services
                     PictureUrl = x.PictureUrl,
                     EventName = x.EventName,
                     Units = x.Quantity,
-                    UnitPrice = x.TicketPrice
+                    TicketPrice = x.TicketPrice
                 });
                 order.OrderTotal += (x.Quantity * x.TicketPrice);
             });
