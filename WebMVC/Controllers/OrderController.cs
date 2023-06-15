@@ -98,7 +98,7 @@ namespace WebMvc.Controllers
 
                     int orderId = await _orderSvc.CreateOrder(modifiedOrder);
 
-                        await _cartSvc.ClearCart(user);
+                        //await _cartSvc.ClearCart(user);
                         return RedirectToAction("Complete", new { id = orderId, userName = user.UserName });
                     }
 
