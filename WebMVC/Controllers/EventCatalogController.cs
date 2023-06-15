@@ -18,7 +18,7 @@ namespace WebMvc.Controllers
             _service = service;
             }
        
-        public async Task<IActionResult> Search(int? page,
+        public async Task<IActionResult> Index(int? page,
             int? categoryFilterApplied,
             int? eventTypeSelected, string? citySelected)
 

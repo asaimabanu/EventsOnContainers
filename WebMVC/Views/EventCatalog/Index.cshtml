@@ -50,7 +50,7 @@
 
 <section class="esh-catalog-filters">
     <div class="container">
-    <form asp-action="Search" asp-controller="EventCatalog" method="post">
+    <form asp-action="Index" asp-controller="EventCatalog" method="post">
         <label class="esh-catalog-label" data-title="IsOnline">
             <select asp-for="@Model.EventTypeSelected" asp-items="@Model.EventType" class="esh-catalog-filter"></select>
         </label>
