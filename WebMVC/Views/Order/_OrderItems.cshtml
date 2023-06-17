@@ -15,11 +15,11 @@
                 <img class="esh-basket-image" src="@item.PictureUrl">
                 <input type="hidden" value="@item.PictureUrl" name=@("orderitems[" + i + "].PictureUrl") />
             </section>
-            <section class="esh-orders_new-item esh-orders_new-item--middle col-xs-4">
+            <section class="esh-orders_new-item esh-orders_new-item--middle col-xs-3">
                 @item.EventName
                 <input type="hidden" value="@item.EventName" name=@("orderitems[" + i + "].EventName") />
             </section>
-            <section class="esh-orders_new-item esh-orders_new-item--middle col-xs-4">
+            <section class="esh-orders_new-item esh-orders_new-item--middle col-xs-1">
                 @item.EventId
                 <input type="hidden" value="@item.EventId" name=@("orderitems[" + i + "].EventId") />
             </section>

@@ -54,7 +54,7 @@ namespace WebMvc.Controllers
         [Authorize]
         public IActionResult About()
             {
-            return View();
+            return RedirectToAction(nameof(EventCatalogController.Search), "EventCatalog");
             }
     }
 }
