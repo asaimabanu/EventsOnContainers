@@ -7,3 +7,6 @@ https://youtu.be/uxZYq3epMXA
 
 Project 3b Walkthrough:
 https://youtu.be/2rIUQZ3vfTo
+
+Project 3c Walkthrough:
+https://youtu.be/QjYtAkKEqw8
