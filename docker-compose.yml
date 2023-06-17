@@ -28,7 +28,7 @@ services:
       context: .\TokenServiceApi
       dockerfile: Dockerfile
     environment:
-      ConnectionString: "Data Source=mssqlserver;Initial Catalog=TokenServiceDb;User Id=sa;Password=ProductApi123(!);Connect Timeout=30;TrustServerCertificate=false;Encrypt=false"
+      ConnectionString: "Data Source=tokensqlserver;Initial Catalog=TokenServiceDb;User Id=sa;Password=ProductApi123(!);Connect Timeout=30;TrustServerCertificate=false;Encrypt=false"
       MvcClient: http://localhost:7500
     ports:
       - "7080:80"
@@ -45,7 +45,7 @@ services:
       context: .\CartApi
       dockerfile: Dockerfile
     environment:
-      IdentityUrl: http://{fill your ip}:7080
+      IdentityUrl: http://172.28.224.1:7080
       ConnectionString: basket.data
     ports:
       - "7040:80"
@@ -56,24 +56,62 @@ services:
     depends_on:
       - tokenserver
       - basket.data
+      - rabbitmq
+
+  order:
+    image: events/orderapi
+    build:
+      context: .\OrderApi
+      dockerfile: Dockerfile
+    logging:
+      driver: "json-file"
+      options: {
+        max-size: "200k",
+        max-file: "10"
+      }
+    environment:
+      IdentityUrl: http://172.28.224.1:7080
+      ConnectionString: "Data Source=mssqlserver;Initial Catalog=OrdersDb1;User Id=sa;Password=ProductApi123(!);Connect Timeout=30;TrustServerCertificate=false;Encrypt=false;"
+    ports:
+      - "7030:80"
+    container_name: jewelsorderapi
+    networks:
+      - frontend
+      - backend
+    depends_on:
+      - tokenserver
+      - mssqlserver
+      - rabbitmq
 
   eventwebclient:
     image: events/eventclient
     build: 
       context: .\WebMvc
       dockerfile: Dockerfile
+    logging:
+      driver: "json-file"
+      options: {
+        max-size: "200k",
+        max-file: "10"
+      }
     environment:
       CatalogUrl: http://eventcatalog
-      IdentityUrl: http://{fill your ip}:7080
+      IdentityUrl: http://172.28.224.1:7080
       CallbackUrl: http://localhost:7500
+      OrderUrl: http://order
+      CartUrl: http://cart
+      StripePublicKey: pk_test_51NHat7C10pLXX2rWrrtVFSdqz8gPOvCfMsT8KN5SJlSDqgeFuRgjp7yMoIfb9CiasOOhyHtvIGHpt6G70xqBLqYD00YMpzrBxc
+      StripePrivateKey: sk_test_51NHat7C10pLXX2rWN3gRusAeic873kLdFhojHqC28MtanPnBcxt7qWDKUfkCAdpMPMjuw8NkdJ0tLWa9s68R6sE500lmc75lLI
     ports:
       - "7500:80"
-    container_name: webshop
+    container_name: webshop_events
     networks: 
       - frontend
     depends_on:
       - eventcatalog
       - tokensqlserver
+      - cart
+      - order
 
 
   mssqlserver:
@@ -105,6 +143,17 @@ services:
     ports:
       - "7060:6379"
     container_name: basketdata
+    networks:
+      - backend
+
+  rabbitmq:
+    image: rabbitmq:3
+    container_name: rabbitmq
+    hostname: myrabbitmq
+    ports:
+      - "15672:15672"
+      - "5672:5672"
+      - "5671:5671"
     networks:
       - backend
 
